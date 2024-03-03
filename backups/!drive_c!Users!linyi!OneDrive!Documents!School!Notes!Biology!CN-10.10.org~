@@ -1,0 +1,94 @@
+#+TITLE: Class Notes 10/10
+#+AUTHOR: Daniel
+#+LATEX_HEADER: \usepackage{amsthm}
+\newtheorem*{definition}{Definition}
+
+* Cladogram Rules
+ 1. Show time as an axis; show which species are extinct and which are still surviving.
+ 2. Show ancestral and derived characteristics on the char (not at the nodes).
+
+* Definitions
+\begin{definition}
+Ancestral characteristics: Traits from the ancestor, shared by all the descendants.
+\end{definition}
+
+\begin{definition}
+Derived characteristics: Mostly evolved traits.
+\end{definition}
+
+\begin{definition}
+Speciation: When a new species forms when a population becomes distinct or separate from an existing species.
+\end{definition}
+
+\begin{definition}
+Ingroup: Whatever has the trait you're looking at.
+\end{definition}
+
+\begin{definition}
+Outgroup: Whatever doesn't have the trait you're looking at.
+\end{definition}
+
+\begin{definition}
+Monophyletic: Everything in the group shares all common ancestors.
+\end{definition}
+
+\begin{definition}
+Polyphyletic: A group derived from more than one common ancestor
+\end{definition}
+
+\begin{definition}
+Monera: small organisms
+\end{definition}
+
+* Organizing the Tree of Life the Old Way: Kingdoms
+1. Two Kingdoms (Romans)
+   1. Plants: Don't Move
+   2. Animals: Move
+2. Three Kingdoms (Middle East)
+   1. Creatures of the Air
+   2. Creatures of the Land
+   3. Creatures of the Sea
+
+3. Prokaryotes
+   - Bacteria
+     - Single-celled
+     - No Nucleus
+     - Different Cell Walls
+   - Archaea
+     - Single-celled
+     - No Nucleus
+     - Different Different Cell Walls
+4. Eukaryotes
+   - Protista
+     - Single-celled
+     - Nucleus
+     - Overlaps with Animalia, Plants, Fungi
+       - Plankton (Animalia)
+       - Algae, Seaweed (Plants)
+     - *Polyphyletic Group!*
+   - Animalia
+     - Muscles
+     - Nerves
+     - Moves
+     - Multi-cellular
+     - Consumer
+   - Plants
+     - Don't move
+     - Multi-cellular
+     - Cell Walls
+       - Made of Cellulose
+     - Creates Biomass through photosynthesis
+   - Fungi
+     - Multi-cellular
+     - Don't Move
+     - Consumer (Decomposer)
+     - Cell Walls
+       - Made of Chitin
+
+
+ - Common Ancestors
+   - Eubacteria
+   - Eukarya
+     - Plants
+     - Fungi
+   - Archaea

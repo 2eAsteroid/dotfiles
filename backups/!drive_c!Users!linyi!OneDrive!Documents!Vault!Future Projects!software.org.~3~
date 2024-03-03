@@ -1,0 +1,15 @@
+
+#+TITLE: Software Projects for the Future
+#+AUTHOR: Daniel L.
+
+* Youtube-dl / Spotdl CLI
+Opening up a new world of access to music / videos, youtube-dl is a great tool. However, I feel like some people would be disinclined to use this piece of software, because of its CLI tool properties. Also, it mostly supports youtube only, as suggested by its name. I want to combine youtube-dl and spotdl, a Spotify downloader, into a beautiful CLI app, like that "TODO list app using Go" video.
+
+* Todo List App in Rust
+I found a tutorial on how to do this, so I want to give it a whirl and see if I could make my own.
+
+* Maths Library, maybe for the new language Niranjan made?
+It's quite evident on what this is. I'll add some stuff from Niranjan's language later, and some ideas.
+
+* Stenography +
+Stenography is a typing philosophy where you input chords, and not letters. This removes the need to press as many buttons and makes it faster consequently. However, it makes it a lot harder to learn and to input other languages. I'm thinking about making something that takes chord inputs, but it just returns IPA text, which language parsers can take in to return some text.

@@ -1,0 +1,18 @@
+[
+  {"id":"coimbrab-coimbraMegumacs","abstract":"Doom-like emacs config","accessed":{"date-parts":[["2023",12,26]]},"author":[{"family":"Coimbra (b-coimbra)","given":"Bruno"}],"citation-key":"coimbrab-coimbraMegumacs","container-title":"metaphoric.dev","language":"en","title":"Megumacs","type":"webpage","URL":"https://emacs.metaphoric.dev"},
+  {"id":"DailyDriverTask2023","abstract":"Updated September 2023. A robust task management system designed for people who have trouble sticking with task management systems. A cross between bullet journaling, GTD, and a simple to-do list.","accessed":{"date-parts":[["2023",12,24]]},"citation-key":"DailyDriverTask2023","issued":{"date-parts":[["2023",9,14]]},"language":"en-us","title":"Daily Driver Task Management System","type":"webpage","URL":"https://dannb.org/blog/2020/daily-driver-task-management-system/"},
+  {"id":"protesilaosstavrouEmacsAdvancedOrg2023","abstract":"In this ~25 minute video, I present my new Emacs configuration. It is an advanced setup that starts with a literate Org program as the \"source of truth\". This file generates all the individual modules and custom libraries of my setup. I explain all the technicalities and why this approach is the best of both worlds to (i) document the rich corpus of work found in my dotfiles while (ii) not compromising on code excellence.\n\n+ Website: https://protesilaos.com/emacs/dotemacs\n+ Git repo on SourceHut: https://git.sr.ht/~protesilaos/dotfiles\n  - Mirrors:\n    + GitHub: https://github.com/protesilaos/dotfiles\n    + GitLab: https://gitlab.com/protesilaos/dotfiles\n+ Mailing list: https://lists.sr.ht/~protesilaos/dotf...\n+ Backronym: Do Observe, Transpose, Examine, or Mirror All Configurations, Stranger (dotemacs); Dotfiles Operate Transparently For the Included Linux and Emacs Setups (dotfiles).","accessed":{"date-parts":[["2023",12,24]]},"citation-key":"protesilaosstavrouEmacsAdvancedOrg2023","dimensions":"24:56","director":[{"literal":"Protesilaos Stavrou"}],"issued":{"date-parts":[["2023",12,18]]},"source":"YouTube","title":"Emacs: advanced Org literate configuration","title-short":"Emacs","type":"motion_picture","URL":"https://www.youtube.com/watch?v=ycyxytk1NAQ"},
+  {"id":"systemcraftersEmacsTipsHow2020","abstract":"In this video, we'll learn how to use the Autothemer package to create a custom color theme for Emacs!\n\nThe theme source code for this video can be found here: https://github.com/daviwil/emacs-from...\n\nMy Emacs configuration: https://github.com/daviwil/dotfiles/b...\n\nIf you enjoy this series, please consider becoming a GitHub Sponsor: https://github.com/sponsors/daviwil\n\nFollow me on Twitter for more Emacs content!\n  / systemcrafters  \n\nJoin the System Crafters community on Discord:   / discord  \n\nIntro music: Coriolis Effect by logos feat. stefsax, licensed CC-BY\nhttp://ccmixter.org/files/mseq/26296","accessed":{"date-parts":[["2023",12,24]]},"citation-key":"systemcraftersEmacsTipsHow2020","dimensions":"32:24","director":[{"literal":"System Crafters"}],"issued":{"date-parts":[["2020",10,28]]},"source":"YouTube","title":"Emacs Tips - How to Create Your Own Color Theme","type":"motion_picture","URL":"https://www.youtube.com/watch?v=kCCIudu53Zg"}
+]
+
+
+@misc{noauthor_ricing_2021,
+	title = {Ricing {Org} {Mode}: {A} {Beautiful} {Writing} {Environment}},
+	shorttitle = {Ricing {Org} {Mode}},
+	url = {https://lucidmanager.org/productivity/ricing-org-mode/},
+	abstract = {This article describes how to configure Org mode to create a pleasant and distraction-free writing environment, aka. ricing Org mode.},
+	urldate = {2024-02-17},
+	journal = {lucidmanager.org},
+	month = aug,
+	year = 2021,
+}

@@ -1,0 +1,5 @@
+cd /Users/linyi/Downloads
+youtube-dl https://www.youtube.com/watch?v=bJ3dU0hD9PQ
+mpd Katthveli\ Book\ Club\ -\ Interview\ with\ Tsai\ Kun-lin\ \(蔡焜霖\)-bJ3dU0hD9PQ.mkv 
+mpv Katthveli\ Book\ Club\ -\ Interview\ with\ Tsai\ Kun-lin\ \(蔡焜霖\)-bJ3dU0hD9PQ.mkv 
+mpv "Katthveli\ Book\ Club\ -\ Interview\ with\ Tsai\ Kun-lin\ \(蔡焜霖\)-bJ3dU0hD9PQ.mkv"

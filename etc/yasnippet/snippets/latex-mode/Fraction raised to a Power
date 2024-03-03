@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Fraction raised to a Power
+# key: ;fex
+# --
+\frac{$1}{$2}^{$0}

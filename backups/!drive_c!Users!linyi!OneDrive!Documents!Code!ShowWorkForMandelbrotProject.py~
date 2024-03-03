@@ -1,0 +1,5 @@
+def formula(real_num, complex_num):
+    f_real_num *= real_num
+    complex_num *= -complex_num
+    f_real_num += complex_num
+    

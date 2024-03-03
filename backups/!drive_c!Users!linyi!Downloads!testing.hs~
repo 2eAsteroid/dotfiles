@@ -1,0 +1,6 @@
+
+fib3(x, y, 0) = (x, y, 0)
+fib3 (x, y , z) = fib3 (y, x + y, z - 1)
+
+fib x = fib3 (1, 1, x)
+

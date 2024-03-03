@@ -1,0 +1,97 @@
+; Single-line comment
+; There are no multi-line comments
+
+[
+    ✏['Hello World'].
+    𝑓[add][x y][
+        ∑[x y]
+    ][
+      'Returns the sum of the two numbers passed in.'
+    ].
+    ✏[add[5 10]].
+    𝑥[g 0].
+    ⟳[
+        
+    ][
+        @t eq[]
+    ]
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$ Single-line comment $
+
+$$$ Multi
+    line
+    comment $$$
+
+$Header Lines; designated by %, and are moved to the front when executing.$
+% 📎[(psc)],
+% 📎[(𝓜)],
+% 𝕔[\π=[(3.14159265)]], $Constants are usually passed into the function `𝕔`, which , to differentiate them from normal variables.$
+
+\ADD[x y]=[
+    ∑[x y].
+],
+
+\SUM=[
+    ADD[(5) (10)].
+],
+
+⟺[\INDEX=[(0)]
+  ⟳[
+     ✏[⇨[INDEX 𝕊]],
+     ⁺1[INDEX].
+    ]
+[@t >[INDEX 10]]],
+
+$Alternatively, $
+⟺[\INDEX=[(0)]
+  ⟳[
+     ✏𝓡[INDEX],
+     ⁺1[INDEX].
+    ]
+[@t >[INDEX 10]]],
+
+\LIST-OF-FIRST-TEN-DIGITS=[
+    ∪[1 ∪[2 ∪[3 ∪[4 ∪[5 ∪[6 ∪[7 ∪[8 ∪[9 ∪[10 ∅]]]]]]]]]].
+],
+
+$However, this type of set creation is too long, so there is a set collection function built in.$
+\LIST-OF-FIRST-ONE-HUNDRED-DIGITS=[
+    🪣○[1 2 3 4 5 6 7 8 9 10].
+],
+
+\STRING-HELLO-WORLD=[
+    🪣○⟹['h' 'e' 'l' 'l' 'o' ' ' 'w' 'o' 'r' 'l' 'd'].
+],
+
+$That's very tedious however, so there's a macro that makes that easier.$
+\STRING-GOODBYE-WORLD=[
+    🧵[Goodbye World!].
+    $Macros accept any arguments, and the arguments are not checked for syntactic correctness. You'll have to prepend a ~ if you want to use certain delimiter characters.$
+],
+
+\PROMPT=[
+    🧵[Enter in your age ~[1-18~]: ].
+],
+
+$$Easier Math$$
+$Math is tricky, because of the many functions. That's why there's a function that helps you do DWIM math!$
+
+\RESULT=[
+    🖩[532 * (23123151 / 3519912) - 54312]. $This is translated into `−[×[532 ÷[23123151 3519912]] 54312]`.
+],
+

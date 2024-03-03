@@ -1,0 +1,76 @@
+(defun display-add-subtract (num-one num-two function)
+  (let ((result (funcall function num-one num-two)))
+    (format nil "~a ~,3f" (if (eq (abs result) result) "+" "-") (abs result))))
+
+
+
+(defun mandelbrot (complex-number home-dir &optional original iter)
+  (let* ((add (if original original complex-number))
+	 (iterations (if iter iter 1))
+	 (result (+ (* complex-number complex-number) add)))
+    (with-open-file (stream (concatenate 'string home-dir "/mandelbrot.txt")
+			    :direction :output
+			    :if-exists :append
+			    :if-does-not-exist :create)
+      (format stream "(~,3f ~ai)² ~a ~ai ~%"
+	      (realpart complex-number)
+	      (display-add-subtract (imagpart complex-number) 1 '*)
+	      (display-add-subtract (realpart add) 1 '*)
+	      (display-add-subtract (imagpart add) 1 '*))
+      (if (= (random 2) 1)
+	  (format stream " = ~,3f² + 2 × (~,3f × ~,3f)i + (~,3fi)² ~a ~ai ~%"
+		  (realpart complex-number)
+		  (realpart complex-number)
+		  (imagpart complex-number)
+		  (imagpart complex-number)
+		  (display-add-subtract (realpart add) 1 '*)
+		  (display-add-subtract (imagpart add) 1 '*))
+	  (format stream " = ~a² + 2(~a × ~a)i + (~ai)² ~a ~ai ~%"
+		  (realpart complex-number)
+		  (realpart complex-number)
+		  (imagpart complex-number)
+		  (imagpart complex-number)
+		  (display-add-subtract (realpart add) 1 '*)
+		  (display-add-subtract (imagpart add) 1 '*)))
+      (format stream " = ~a ~ai ~a ~a ~ai ~%"
+	      (* (realpart complex-number) (realpart complex-number))
+	      (display-add-subtract 2 (* (realpart complex-number) (imagpart complex-number)) '*)
+	      (display-add-subtract (- (imagpart complex-number)) (imagpart complex-number) '*)
+	      (display-add-subtract (realpart add) 1 '*)
+	      (display-add-subtract (imagpart add) 1 '*))
+      (format stream " = ~a ~ai~%"
+	      (realpart result)
+	      (display-add-subtract 1 (imagpart result) '*))
+      (if (< (abs result) 2)
+	  (format stream "√(~a² ~a²) = √(~a ~a) < 2~%"
+		  (realpart result)
+		  (display-add-subtract 1 (imagpart result) '*)
+		  (* (realpart result) (realpart result))
+		  (display-add-subtract (imagpart result) (imagpart result) '*))))
+    (if (>= iterations 6)
+	(progn
+	  (format t "~a ~ai~%"
+		  (realpart result)
+		  (display-add-subtract (imagpart result) 1 '*))
+	  iterations)
+     (if (>= (abs result) 2)
+	iterations
+	(mandelbrot result home-dir add (1+ iterations))))))
+
+(defun read-prompt (prompt)
+  (format *query-io* "~a: " prompt)
+  (force-output *query-io*)
+  (read-line *query-io*))
+
+(defun main ()
+  (let ((home-directory (read-prompt "Enter in your home directory")))
+    (loop
+     (let ((real-num (float (read-from-string (read-prompt "Enter in the real part of your number"))))
+	   (complex-num (float (read-from-string (read-prompt "Enter in the imaginary part of your number")))))
+       (mandelbrot (complex real-num complex-num) home-directory))
+     (with-open-file (stream (concatenate 'string home-directory "/mandelbrot.txt")
+			     :direction :output
+			     :if-exists :append
+			     :if-does-not-exist :create)
+       (format stream "~a~%" (make-string 50 :initial-element #\=))
+       (format t "~a~%" (make-string 50 :initial-element #\=))))))

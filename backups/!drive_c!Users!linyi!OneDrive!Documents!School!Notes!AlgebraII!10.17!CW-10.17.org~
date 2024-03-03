@@ -1,0 +1,9 @@
+#+TITLE: Classwork 10/17
+#+AUTHOR: Daniel
+#+LATEX_HEADER: \usepackage{amsthm}
+
+* Notes
+\newtheorem*{definition}{Definition}
+
+\begin{definition}
+The closure property states that when a set of numbers is closed under an arithmetic operation, performing that arithmetic operation on any two numbers will always result in a number belonging to the same set of numbers.

@@ -1,0 +1,29 @@
+#+BEGIN_SRC emacs-lisp
+  (defun orderless--strict-*-initialism (component &optional anchored)
+    "Match a COMPONENT as a strict initialism, optionally ANCHORED.
+  The characters in COMPONENT must occur in the candidate in that
+  order at the beginning of subsequent words comprised of letters.
+  Only non-letters can be in between the words that start with the
+  initials.
+
+  If ANCHORED is `start' require that the first initial appear in
+  the first word of the candidate.  If ANCHORED is `both' require
+  that the first and last initials appear in the first and last
+  words of the candidate, respectively."
+    (orderless--separated-by
+        '(seq (zero-or-more alpha) word-end (zero-or-more (not alpha)))
+      (cl-loop for char across component collect `(seq word-start ,char))
+      (when anchored '(seq (group buffer-start) (zero-or-more (not alpha))))
+      (when (eq anchored 'both)
+        '(seq (zero-or-more alpha) word-end (zero-or-more (not alpha)) eol))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun orderless-strict-initialism (component)
+    "Match a COMPONENT as a strict initialism.
+  This means the characters in COMPONENT must occur in the
+  candidate in that order at the beginning of subsequent words
+  comprised of letters.  Only non-letters can be in between the
+  words that start with the initials."
+    (orderless--strict-*-initialism component))
+#+END_SRC

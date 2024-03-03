@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Times Cross
+# key: x
+# --
+\\times $0

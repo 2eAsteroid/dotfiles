@@ -1,0 +1,92 @@
+#+TITLE: Homework 11/3
+#+AUTHOR: Daniel L.
+#+SUBTITLE: p. 305 #6, 9, 12, 14, 15
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{physics}
+\newtheorem*{problem}{Problem}
+
+* Problem 6 (pg. 305)
+\begin{problem}
+Which is the other solution to the system of equations at the right?
+\end{problem}
+The answer is C.
+
+* Problem 9 (pg. 306)
+\begin{problem}
+Try using both substitution and elimination to solve the following system. What happens?
+\[ x + 2y = 3 \]
+\[ 2x + 4y = 4 \]
+\end{problem}
+It results in a illogical equality, which means that there's no real solution to this system of equations.
+
+* Problem 12 (pg. 306)
+\begin{problem}
+Solve this system.
+\[ x = y + z\]
+\[ y = x + z\]
+\[ z = x + y\]
+\end{problem}
+When you rearrange the system, you would get,
+\begin{align*}
+z &= x - y 
+z &= x + y 
+z &= y - x
+\end{align*}
+
+, which would get you,
+\begin{align*}
+x - y &= y - x
+x + y &= y - x
+\end{align*}
+, which means that $x$, $y$, and $z$ are all zero.
+
+* Problem 14 (pg. 306)
+\begin{problem}
+In Exercise 13 from Lesson 4.01, you solve the following system.
+\begin{align}
+x + 2y + 3z &= 1 \notag\\
+3y - z &= 4 \notag\\
+2z &= -2 \notag\\
+\end{align} \notag\\
+The natural way to solve such a triangular system is to solve for $z$ and then substitute. However, you have learned that adding and subtracting equations can accomplish the same thing as substitution. Solve this system again without any substitutions.
+\end{problem}
+You would subtract equation 2 and 3, leaving you with,
+\begin{align}
+x + 2y + 3z &= 1 \notag\\
+3y - 3z &= 6 \notag\\
+\end{align} \notag\\
+, and then you can scale and subtract 1 and 2,
+\begin{align}
+3x + 6y + 9z &= 3 \notag\\
+6y - 6z &= 12 \notag\\
+3x + 3z &= 15 \notag\\
+x + z &= 5 \notag\\
+2x + 2z &= 10 \notag\\
+2z &= -2 \notag\\
+2x &= 12 \notag\\
+x &= 6
+\end{align} \notag\\
+And once we find the other variables, you get,
+\begin{align}
+x &= 6, \notag\\
+y &= 1, \notag\\
+z &= -1
+\end{align} 
+* Problem 15 (pg. 306)
+\begin{problem}
+Solve this system using addition and subtraction.
+\begin{align}
+2x - 3y + 5z - 2t &= 9 \notag\\
+5y - z + 3t &= 1 \notag\\
+7z - t &= 3 \notag\\
+2t &= 8 \notag\\
+\end{align} \notag\\
+\end{problem}
+
+\begin{align}
+7z - t &= 3 \label{eqn:one}\\
+2t &= 8 \label{eqn:two}\\
+\shortintertext{When you subtract \eqref{eqn:two} from \eqref{eqn:one}, you get,}
+7z - 3t &= -5 \notag\\
+\end{align} \notag\\

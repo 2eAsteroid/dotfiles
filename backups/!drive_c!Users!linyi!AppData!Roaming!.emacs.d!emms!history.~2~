@@ -1,0 +1,9 @@
+;;; emms history -*- mode: emacs-lisp; coding: utf-8; -*-
+(
+;; active playlist
+" *EMMS Playlist*"
+;; playlists: ((BUFFER_NAME SELECT_POSITION TRACKS) ...)
+((" *EMMS Playlist*" 322 ((*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Cure for ADHD - 30 min of Breakcore!-DDFNgs7gp8M.mp3") (info-mtime 25901 46544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/MF DOOM x Cookin Soul - DOOM XMAS (full tape)-EwzBjBHfDIs.mp3") (info-mtime 23579 55544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Nujabes - Aruarian Dance (Homework Edit)-5yYMicbSf98.mp3") (info-mtime 23454 43967 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Cure for ADHD - 30 min of Breakcore!-DDFNgs7gp8M.mp3") (info-mtime 25901 46544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Cure for ADHD - 30 min of Breakcore!-DDFNgs7gp8M.mp3") (info-mtime 25901 46544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/MF DOOM x Cookin Soul - DOOM XMAS (full tape)-EwzBjBHfDIs.mp3") (info-mtime 23579 55544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Cure for ADHD - 30 min of Breakcore!-DDFNgs7gp8M.mp3") (info-mtime 25901 46544 0 0)) (*track* (type . file) (name . "c:/Users/linyi/OneDrive/Documents/Music/Cure for ADHD - 30 min of Breakcore!-DDFNgs7gp8M.mp3") (info-mtime 25901 46544 0 0)))))
+;; play method
+((emms-repeat-track) (emms-repeat-playlist))
+)

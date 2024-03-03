@@ -1,0 +1,98 @@
+#+TITLE: Homework 11/17
+#+SUBTITLE: p. 347 #8-11, 13, 15-19, 31, 32, 34, 37, 40
+#+AUTHOR: Daniel L.
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{gauss}
+\newtheorem*{problem}{Problem}
+
+* Problem 8 (pg. 347)
+\begin{problem}
+Matrices $A$ and $B$ are conformable for multiplication in the order $AB$ if the product $AB$ is defined. Suppose $A = \begin{pmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{pmatrix}$
+\end{problem}
+** Part A
+\begin{problem}
+What size matrices $B$ are conformable for multiplication with $A$ in the order $AB$?
+\end{problem}
+Any matrix of row 3 are conformable.
+** Part B
+\begin{problem}
+What size matrices $B$ are conformable for multiplication with $A$ in the order $BA$?
+\end{problem}
+Any matrix of column 2 are conformable.
+** Part C
+\begin{problem}
+What size matrices $B$ are conformable for multiplication with $A$ in either order?
+\end{problem}
+Only a matrix of size $3 \times 2$.
+
+* Problem 9 (pg. 347)
+\begin{problem}
+For what size matrix $A$ is it true that whenever $B$ is the same size as $A$, then $AB$ exists?
+\end{problem}
+The matrix would have to be a square matrix.
+
+* Problem 10 (pg. 347)
+\begin{problem}
+For what size matrix $A$ is it true that whenever $B$ is the same size as $A$, then $BA$ exists?
+\end{problem}
+The matrix has to be a square matrix.
+
+* Problem 11 (pg. 347)
+\begin{problem}
+Consider the equations below.
+\begin{align*}
+z_{1} = y_{1} + 2y_{2} \\
+z_{2} = 3y_{1} - 4y_{2} \\
+y_{1} = 2x_{1} - x_{2} \\
+y_{2} = 3x_{1} + x_{2} \\
+\end{align*}
+Use matrix multiplication (not direct substitution to find formulas for $z_{1}$ and $z_{2}$ in terms of $x_{1}$ and $x_{2}$).
+\end{problem}
+When you convert the first two equations to a matrix, you get,
+\begin{gather*}
+\begin{pmatrix}
+z_{1} \\
+z_{2}
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 2 \\
+3 & -4
+\end{pmatrix} \cdot \begin{pmatrix} y_{1} \\ y_{2} \end{pmatrix}\\
+\text{However, you can replace the second matrix with another matrix to result in, }\\
+\begin{pmatrix}
+1 & 2 \\
+3 & -4
+\end{pmatrix} \cdot
+\begin{pmatrix}
+2 & -1 \\
+3 & 1
+\end{pmatrix}\\
+\text{Multiplying these together results in, }\\
+\begin{pmatrix}
+8 & 1 \\
+-6 & -7
+\end{pmatrix}\\
+\text{When you convert that back into equations, you obtain, }\\
+z_{1} = 8x_{1} + x_{2} \\
+z_{2} = -6x_{1} - 7x_{2}
+\end{gather*}
+
+* Problem 13 (pg. 347)
+\begin{problem}
+For fundraisers, Local High School has a car wash and a play. All students are encouraged to sell tickets at $5 for a car wash and $10 for the play. The bordered matrix below shows how many tickets each class has sold.
+\end{problem}
+** Part A
+\begin{problem}
+Copy and complete the following matrix. Use a matrix product to compute the entries.
+\end{problem}
+\begin{gather*}
+\begin{pmatrix}
+300 & 250 & 135 \\
+2000 & 1750 & 1100
+\end{pmatrix}
+\end{gather*}
+** Part B
+\begin{problem}
+Use another matrix product to determine the total revenue and total ticket sales for all three classes together.
+\end{problem}

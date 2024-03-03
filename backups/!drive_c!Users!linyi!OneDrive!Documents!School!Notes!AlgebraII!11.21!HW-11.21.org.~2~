@@ -1,0 +1,181 @@
+#+TITLE: Homework 11/21
+#+SUBTITLE: 4.08 - p. 357 #8, 12, 13, 15, 18
+#+AUTHOR: Daniel L.
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{gauss}
+\newtheorem*{problem}{Problem}
+
+* Problem 8 (pg. 357)
+\begin{problem}
+  Consider the following equation: $\begin{pmatrix} 3 & -1 \\ -2 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ \\
+  Does this mean that $\begin{pmatrix}3 & -1 \\ -2 & 2 \end{pmatrix}$
+\end{problem}
+No, because you cannot swap the matrices and get the same result.
+
+* Problem 12 (pg. 358)
+\begin{problem}
+  Is there a matrix $
+  \begin{pmatrix}
+    x & y \\
+    z & w
+  \end{pmatrix}$
+  that solves the following equation? \\
+  \begin{gather*}
+    \begin{pmatrix}
+      x & y \\ z & w
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 2 \\
+      3 & 4
+    \end{pmatrix}
+     =
+     \begin{pmatrix}
+       1 & 0 \\
+       0 & 1
+     \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  \begin{cases}
+    x + 3y &= 1 \\
+    2x + 4y &= 0 \\
+    z + 3w &= 0 \\
+    2z + 4w &= 1
+  \end{cases} \\
+  x = -2 \\
+  y = -\frac{1}{2} \\
+  z = -2 \\
+  w = -\frac{1}{2} \\
+\end{gather*}
+
+* Problem 13 (pg. 358)
+\begin{problem}
+  Is there a matrix $
+  \begin{pmatrix}
+    x & y \\
+    z & w
+  \end{pmatrix}
+  $
+  that solves the following equation?
+  \begin{gather*}
+    \begin{pmatrix}
+      1 & 2 \\
+      3 & 4
+    \end{pmatrix}
+    \begin{pmatrix}
+      x & y \\
+      z & w
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  \begin{cases}
+    x + 2z &= 1 \\
+    y + 2w &= 0 \\
+    3x + 4z &= 0 \\
+    3y + 4w &= 1
+  \end{cases} \\
+  x = ^-2 \\
+  y = \frac{3}{2} \\
+  z = \frac{3}{2} \\
+  w = ^-2
+\end{gather*}
+
+* Problem 15 (pg. 358)
+\begin{problem}
+  Suppose $a_{1}$ is the sum of $x_{1}$ and $x_{2}$. $a_{2}$ is the sum of $x_{2}$ and $x_{3}$, and $a_{3}$ is the sum of $x_{3}$ and $x_{1}$. If $(a_{1}, a_{2}, a_{3}) = (1, 2, 3)$, what are $x_{1}$, $x_{2}$, and $x_{3}$?
+\end{problem}
+You can structure the problem like this,
+\begin{gather*}
+  \begin{pmatrix}
+    1 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_{1} & x_{2} & x_{3} \\
+    x_{2} & x_{3} & x_{1}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    a_{1} & a_{2} & a_{3}
+  \end{pmatrix}
+  \text{The answer is,} \\
+  (1, 0, 2)
+\end{gather*}
+
+* Problem 18 (pg. 358)
+\begin{problem}
+  Compute the inverse of each matrix.
+\end{problem}
+** Part A
+\begin{problem}
+  \begin{gather*}
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 2 & 0 \\
+      0 & 0 & \frac{1}{3}
+    \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  A^{-1} =
+  \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & -\frac{1}{2} & 0 \\
+    0 & 0 & 3
+  \end{pmatrix}
+\end{gather*}
+** Part B
+\begin{problem}
+  \begin{gather*}
+    \begin{pmatrix}
+      1 & 1 \\
+      0 & 1
+    \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  B^{-1} =
+  \begin{pmatrix}
+    1 & -1 \\
+    0 & 1
+  \end{pmatrix}
+\end{gather*}
+** Part C
+\begin{problem}
+  \begin{gather*}
+    \begin{pmatrix}
+      1 & 2 & 3 \\
+      0 & 4 & 5 \\
+      0 & 0 & 6
+    \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  \begin{pmatrix}
+    1 & -\frac{1}{2} & -\frac{1}{12} \\
+    0 & \frac{1}{4} & -\frac{5}{24} \\
+    0 & 0 & \frac{1}{6}
+  \end{pmatrix}
+\end{gather*}
+** Part D
+\begin{problem}
+  \begin{gather*}
+    \begin{pmatrix}
+      1 & 0 & 0 \\
+      2 & 1 & 0 \\
+      2 & 1 & 2
+    \end{pmatrix}
+  \end{gather*}
+\end{problem}
+\begin{gather*}
+  D^{-1} =
+  \begin{pmatrix}
+    
+  \end{pmatrix}
+\end{gather*}

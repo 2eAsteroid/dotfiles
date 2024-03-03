@@ -1,0 +1,268 @@
+;; -*- coding: utf-8; lexical-binding:t; -*-
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "SUBMIT(s)" "|" "DONE(d)" "PUSHED(p)" "RAISED(r)" "CANCELED(c)")))
+
+
+(defun mode-line-major-mode-name ()
+	"Return capitalized and mode-remove major-mode name"
+	(capitalize (if (numberp (string-match-p "-mode" (symbol-name major-mode)))
+			(string-trim-right (symbol-name major-mode) "-mode")
+		      (symbol-name major-mode))))
+
+(when (member "Times New Roman" (font-family-list))                                ; Comes default with Windows
+  (set-fontset-font t nil "Times New Roman" nil 'append)                           ; Add more when I get more
+  (message "Added Times New Roman"))
+
+
+(when (member "Noto Sans" (font-family-list))
+  (set-fontset-font t nil "Noto Sans Symbols" nil 'append)
+  (message "Added Noto Sans"))
+
+(when (member "Segoe UI Symbol" (font-family-list))
+  (set-fontset-font t nil "Segoe UI Symbol" nil 'append)
+  (message "Added Segoe UI Symbol"))
+
+(when (member "Unifont" (font-family-list))
+  (set-fontset-font t nil "Unifont" nil 'append)
+  (set-fontset-font t nil "Unifont Upper" nil 'append)
+  (message "Added Unifont"))
+
+(defun custom/mode-line-modified ()
+    (let* (
+	   (config-alist
+ 	    '(("*" all-the-icons-faicon "chain-broken" :height 1.2 :v-adjust -0.0)
+	      ("-" all-the-icons-faicon "link" :height 1.2 :v-adjust -0.0)
+	      ("%" all-the-icons-faicon "lock" :height 1.2 :v-adjust 0.1)))
+	   (result (cdr (assoc (format-mode-line "%*") config-alist))))
+      (propertize (format "%s" (apply (car result) (cdr result)))
+		  'face `(:family ,(all-the-icons-faicon-family))
+		  'help-echo (if (string-equal (cadr result) "chain-broken")
+				 (format "Buffer: `%s` is modified." (buffer-name))
+			       (if (string-equal (cadr result) "link")
+				   (format "Buffer: `%s` is saved." (buffer-name))
+				 (format "Buffer: `%s` is read-only." (buffer-name)))))))
+
+(defun custom/mode-line-region-info ()
+  (when mark-active
+    (let ((lines (count-lines (region-beginning) (region-end)))
+	  (chars (- (region-end) (region-beginning))))
+      (concat
+       (propertize (format "%s " (all-the-icons-octicon "pencil"))
+		   'face `(:family ,(all-the-icons-octicon-family))
+		   'display `(raise -0.0))
+       (propertize (format "%s:%s" lines chars)
+		   'face `(:height 0.9))))))
+
+
+(defun custom/mode-line-mode-icon ()
+  (propertize
+   (format "%s" (all-the-icons-icon-for-mode major-mode :v-adjust 0.0))
+   'help-echo (format "Major Mode: `%s`" major-mode)
+   'face `(:height 170 :family ,(all-the-icons-icon-family-for-buffer))))
+
+(defun custom/mode-line-region-buffer-info ()
+  (if mark-active
+      (custom/mode-line-region-info)
+    (concat
+     (propertize
+      (format "%s" (all-the-icons-octicon "pencil"))
+      'face `(:family ,(all-the-icons-octicon-family))
+      'display `(raise -0.0))
+     (propertize
+      (concat
+       (format "%s:" (car (buffer-line-statistics)))
+       "%i")
+      'face `(:height 0.9)))))
+
+
+(require 'all-the-icons)
+(defun custom/mode-line-github-vc ()
+  (if vc-mode
+      (let ((branch (cdr (string-split vc-mode "[:-]"))))
+	(concat
+	 (propertize
+	  (format "%s " (all-the-icons-octicon "git-branch"))
+	  'face `(:family ,(all-the-icons-octicon-family) :height 1.3)
+	 'display `(raise -0.1))
+	(propertize (format "%s" branch) 'face `(:height 0.9))))
+  (concat
+   (propertize
+    (format "%s " (all-the-icons-octicon "git-branch"))
+    'face `(:family ,(all-the-icons-octicon-family) :height 1.3)
+    'display `(raise -0.1))
+   (propertize (format "%s" "(git init)") 'face `(:height 0.9)))))
+
+(defun custom/mode-line-buffer-name ()
+  (format "%s"
+	  (propertize (buffer-name)
+		      'help-echo (format "Buffer Name: `%s`" (buffer-name))
+		      'face `(:foreground "#CD69BF"))))
+
+
+
+(defun custom/mode-line-right-align-rest-width ()
+  (+ 1 (length display-time-string)))
+
+(defun custom/mode-line-right-align ()
+  "Returns empty space using the default 'mode-line' face and leaving RESERVE space on the right."
+  (propertize " "
+	      'display `(space . (:align-to (- (+ right right-fringe right-margin) ,(custom/mode-line-right-align-rest-width))))))
+
+(defun custom/static-blank ()
+  " ")
+
+(defvar-local sensible-split-width-threshold 160)                    ; Kinda set the actual value to nil, so we can just make a new variable for just the mode line
+(defvar-local mode-line-truncate-length 9)                           ; How long should a string at least be until being truncated
+
+(defun custom/mode-line-truncate-string-p (str)                      ; Checks if a string should be truncated
+  "Returns non-nil if the string should be truncated"
+  (and (< (window-total-width) sensible-split-width-threshold)       ; Sometimes rainbow delimiters make me angry. Anyways, this returns the conjunction of whether the window's length is smaller than the split-threshold
+       (> (length str) mode-line-truncate-length)                    ; and whether the string is longer than the truncate length
+       (not (one-window-p :no-minibuffer))))                         ; and whether there's more than one window (not counting the minibuffer)
+
+(defun custom/mode-line-truncate-string (str)                        ; Truncates the string function
+  "Returns the truncated string, else return the original string."
+  (if (custom/mode-line-truncate-string-p str)                              ; If the string should be truncated
+      (concat (substring str 0 mode-line-truncate-length) "...")     ; Add the first 9 characters of the string and append a '...' at the end.
+    str))                                                            ; Else, return original string
+
+(setq-default mode-line-format
+	      '("%e"
+		(custom/mode-line-truncate-string
+		 '((:eval (custom/mode-line-modified))
+		   " "
+		   (:eval (custom/mode-line-buffer-name))
+		   " "
+		   (:eval (custom/mode-line-mode-icon))
+		   " | "
+		   (:eval (custom/mode-line-region-buffer-info))
+		   " | "
+		   (:eval (custom/mode-line-github-vc))
+		   " | "
+		   (:eval (custom/mode-line-right-align))
+		   display-time-string
+		   " "
+		   vc-mode))))
+
+(setq-default mode-line-format
+	      (custom/mode-line-truncate-string
+	       '(concat
+		"%e"
+		(:eval (custom/mode-line-modified))
+		" "
+		(:eval (custom/mode-line-buffer-name))
+		" "
+		(:eval (custom/mode-line-mode-icon))
+		" | "
+		(:eval (custom/mode-line-region-buffer-info))
+		" | "
+		(:eval (custom/mode-line-github-vc))
+		" | "
+	        (:eval (custom/mode-line-right-align))
+		display-time-string
+		" "
+		vc-mode
+		)))
+
+(defun sudden-kill-line ()
+  (interactive)
+  (move-beginning-of-line nil)
+  (kill-line)
+  (kill-line)
+  (previous-line)
+  (end-of-line nil))
+
+(defun org-fix-latex ()
+  (interactive)
+  (move-beginning-of-line nil)
+  (insert "#+LATEX: "))
+
+(global-auto-revert-mode t)
+(global-set-key (kbd "C-k") 'sudden-kill-line)
+
+;(setq-default mode-line-format header-line-format)
+;(setq-default header-line-format nil)
+
+(setq display-time-interval 1)
+(setq-default header-line-format mode-line-format)
+(setq-default mode-line-format nil)
+(setq-default display-time-default-load-average nil)
+(setq-default display-time-format "%k:%M:%S (%z)")
+(display-time)
+
+(add-hook 'org-mode-hook 'visual-line-mode)
+
+(when (window-system)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1)
+  (setq use-dialog-box nil
+	use-file-dialog nil))
+
+(defun electric-pair-disable-certain-brackets ()
+  (setq-local electric-pair-inhibit-predicate 
+	      '(lambda (c)
+		 (or (char-equal c ?<) (char-equal c ?=)))))
+
+
+(defun add-function-to-multiple-hooks (function multiple-hooks)
+  (mapc (lambda (hook)
+      	  (add-hook hook function))
+        multiple-hooks))
+
+(add-function-to-multiple-hooks 'electric-pair-disable-certain-brackets '(
+									  prog-mode-hook
+									  org-mode-hook
+									  text-mode-hook
+									  ))
+(electric-pair-mode)
+
+(require 'fira-code-mode)
+(fira-code-mode-set-font)
+(setq fira-code-mode-disabled-ligatures '("*" "?=" "[]" "x"))
+(add-hook 'prog-mode-hook 'fira-code-mode)
+
+(setq doc-view-scale-internally t)
+
+(setq doc-view-resolution 600)
+
+(auto-insert-mode t)
+
+(setq ring-bell-function (quote ignore))
+
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+(setq inhibit-startup-message t)
+
+(load-theme 'crypt t)
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "The Library of Babel")
+;(setq dashboard-startup-banner "~/.emacs.d/poltergeist.png")
+(setq dashboard-center-content t)
+(setq dashboard-set-footer nil)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+(setq io-interpreter "io.exe")
+
+(setq eat-kill-buffer-on-exit t)
+(setq eat-enable-mouse t)
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+
+(when (display-graphic-p)
+  (require 'all-the-icons))
+
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
+

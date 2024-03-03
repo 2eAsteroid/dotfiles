@@ -1,0 +1,13 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(yatemplate visual-fill-column use-package spacious-padding solaire-mode selectric-mode schrute scala-mode rust-mode rubocop rich-minority rainbow-mode rainbow-delimiters popup page-break-lines org-bullets no-littering keyfreq io-mode-inf io-mode highline haskell-mode gcmh flycheck fira-code-mode erlang eldoc ddate dashboard company chemtable autothemer all-the-icons academic-phrases)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

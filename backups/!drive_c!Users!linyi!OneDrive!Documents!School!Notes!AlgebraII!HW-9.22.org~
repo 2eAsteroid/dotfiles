@@ -1,0 +1,66 @@
+#+TITLE: HW 9/22
+#+AUTHOR: Daniel
+
+* Question 1
+** Question 1a
+\frac{$h(x) = x^3 + 2x^2 - 3x - 6$}{x + 2}
+
+Quotient: x^2 - 3
+Remainder: 0
+** Question 1b
+h(-2) = 0
+
+* Question 2
+(1)^105 + 1 + 1 = 3
+Remainder = 3
+
+* Question 3
+(-1)^105 + (-1) + 1 = -1
+Remainder = -1
+
+* Question 7
+** Question 7a
+\frac{$f(x) = x^3 + x^3 + x$}{x + 2}
+
+Quotient: $x^3 - x + 3$
+Remainder: -6
+
+** Question 7b
+Ans: -6
+
+* Question 11
+\frac{x^3 - 12x^2 + 21x + 98}{x + 2}
+ = x^2 - 14x + 49
+
+x^2 - 14x + 49 = (x - 7)(x - 7)
+
+B is the answer.
+
+* Question 1
+It can only have two roots, because when you look at the graph, a quadratic graph can only intersect the x-axis at most two times.
+
+* Question 3
+a = -5
+
+* Question 9
+a = -8
+
+* Question 18
+** Question 18a
+(x^2 + 1)(x - 2)(x - 3)(x - 4)
+** Question 18b
+(x^2 + 1)(x - 3)(x - 4)
+** Question 18c
+(x^2 + 1)(x - 2)(x - 1)(x - 4)
+** Question 18d
+(x^2 + 1)(x - 2)(x - 3)(x - 1)
+** Question 18e
+(x^2 = 1)(x - 4)
+** Question 18f
+(x^2 + 1)
+
+* Question 3
+Remainder = 3
+
+* Question 6
+The zeros of a polynomial is what makes at least one of the factors sum to zero.

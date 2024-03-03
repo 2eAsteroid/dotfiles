@@ -1,0 +1,44 @@
+;; -*- lexical-binding: t; -*-
+(require 'autothemer)
+
+(autothemer-deftheme
+ star-map "A minimalistic theme based on Alabaster and a star map."
+ ((((class color) (min-colors #xFFFFFF)))
+
+ ;; Defines Color palette
+ (star-map-primary "#212121")
+ (star-map-secondary "#C5C5C5")
+ (star-map-secondary-complementary "#515151")
+ (star-map-highlight "#FFdef0")
+ (star-map-string "#95CB82")
+ (star-map-comment "#DFDF8E")
+ (star-map-constant "#CC8BC9")
+ (star-map-warning "#C8102e")
+ (star-map-global-def "#71ADE7")
+ (star-map-punctuation "#708B8D"))
+
+;; Customize faces
+((default                          (:foreground star-map-secondary :background star-map-primary :family "Fira Code" :height 150))
+ (cursor                           (:background star-map-highlight))
+ (region                           (:background star-map-highlight))
+ (font-lock-string-face            (:foreground star-map-string))
+ (font-lock-comment-face           (:foreground star-map-comment))
+ (font-lock-escape-face            (:foreground star-map-constant))
+ (font-lock-constant-face          (:foreground star-map-constant))
+ (font-lock-number-face            (:foreground star-map-constant))
+ (font-lock-function-name-face     (:foreground star-map-global-def))
+ (font-lock-variable-name-face     (:foreground star-map-secondary))
+ (font-lock-keyword-face           (:foreground star-map-secondary))
+ (font-lock-type-face              (:foreground star-map-secondary))
+ (font-lock-builtin-face           (:foreground star-map-constant))
+ (font-lock-operator-face          (:foreground star-map-secondary))
+ (font-lock-warning-face           (:foreground star-map-warning))
+ (font-lock-function-call-face     (:foreground star-map-secondary))
+ (mode-line                        (:foreground star-map-secondary :background star-map-primary :overline t))
+ (mode-line-inactive               (:foreground star-map-secondary-complementary :background star-map-primary :overline t))
+ (font-lock-punctation-face        (:foreground star-map-punctuation))
+ (show-paren-match                 (:background star-map-highlight :weight 'extra-bold))
+ (header-line                      (:foreground star-map-secondary :background star-map-primary :underline t))
+ (header-line-inactive             (:foreground star-map-secondary-complementary :background star-map-primary :underline t))))
+
+(provide-theme 'star-map)

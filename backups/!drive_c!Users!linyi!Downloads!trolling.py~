@@ -1,0 +1,27 @@
+text: str = input("What do you want to say?: ")
+text_array: [int] = []
+
+for chr in text:
+    bin_chr: str = bin(ord(chr))[2:]
+    bin_chr = bin_chr.zfill(8)
+    for digit in bin_chr:
+        text_array.append(int(digit))
+
+print(''.join((str(x) for x in text_array)))
+
+compressed_data: str = ""
+current_bit: bool = False
+
+amount_of_repeats: int = 0
+for digit in text_array:
+    if digit == current_bit:
+        amount_of_repeats += 1
+    else:
+        amount_of_repeats = ''.join((z for z in (bin(amount_of_repeats)[2:]).zfill(3)))
+        current_bit = not current_bit
+        compressed_data = compressed_data + amount_of_repeats
+        amount_of_repeats = 0
+        if digit == current_bit:
+            amount_of_repeats += 1
+
+print(compressed_data)

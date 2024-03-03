@@ -1,0 +1,107 @@
+class Tree
+  attr_accessor :data, :children
+  
+  def initialize(hash_tree={})
+    if hash_tree.empty? then
+      @data = nil
+      @children = []
+    else
+      hash_tree.each do |data, children|
+        @data = data
+        @children = children.collect {|key, value| Tree.new({key => value})}
+      end
+    end
+  end
+  
+  def visit(&block)
+    block.call self
+  end
+
+  def visit_all(&block)
+    visit &block
+    children.each {|c| c.visit_all &block}
+  end
+end
+
+def simple_grep(file_name, phrase="")
+  i = 0
+  File.readlines(file_name).each do |line|
+    if line.match(Regexp.new(phrase)) then
+      puts "L#{i} #{line}"
+    end
+    i = i + 1
+  end
+end
+
+
+class Roman
+  def self.method_missing(name, *args)
+    roman = name.to_s
+    roman.gsub!("IV", "IIII")
+    roman.gsub!("IX", "VIIII")
+    roman.gsub!("XL", "XXXX")
+    roman.gsub!("XC", "LXXXX")
+
+    (roman.count("I") +
+     roman.count("V") * 5 +
+     roman.count("X") * 10 +
+     roman.count("L") * 50 +
+     roman.count("C") * 100)
+  end
+end
+
+
+module AcsAsCsv
+
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+    def acts_as_csv
+      include InstanceMethods
+      include Enumerable
+    end
+  end
+
+  module InstanceMethods
+
+    def read
+      @csv_contents = []
+      filename = self.class.to_s.downcase + '.txt'
+      file = File.new(filename)
+      @headers = file.gets.chomp.split(', ')
+
+      file.each do |row|
+        @csv_contents << row.chomp.split(', ')
+      end
+    end
+
+    attr_acessor :headers, :csv_contents
+
+    def initialize
+      read
+    end
+  end
+end
+
+class CsvRow
+  def initialize(headers, csv_contents)
+    @headers = headers
+    @csv_contents = csv_contents
+  end
+
+  def self.method_missing(name, *args)
+    
+
+
+class RubyCsv
+  include ActsAsCsv
+  acts_as_csv
+end
+
+
+def sleepSort(inputted_list)
+  require 'async'
+  def inner(number)
+    

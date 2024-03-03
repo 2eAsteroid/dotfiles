@@ -1,0 +1,125 @@
+schedule(tristan,
+	 [["French Language and Culture", "McDonie", "A"],
+	  ["Enriched Algebra II", "Hibino", "B"],
+	  ["The Modern World", "Ream", "C"],
+	  ["Biology", "Kalf", "D"],
+	  ["Percussion Ensemble", "Kuchan", "E"],
+	  ["English 10", "Gerard", "F"],
+	  ["Chemistry", "Jannetti", "G"]].
+
+schedule(daniel,
+	 [["Biology", "Kalf", "A"],
+	  ["Enriched Algebra II", "Hibino", "B"],
+	  ["Concert Band", "Kuchan", "C"],
+	  ["Chemistry", "Fisher", "D"],
+	  ["French III", "Kostousova", "E"],
+	  ["The Modern World", "Sheehy;Cherry", "F"],
+	  ["English 10", "Paminger", "G"]]).
+
+schedule(anushka,
+	 [["French Language and Culture", "McDonie", "A"],
+	  ["Enriched Algebra II", "Hibino", "B"],
+	  ["AP Computer Science Java", "Bezaire", "C"],
+	  ["Biology", "Valenti", "D"]
+	  ["The Modern World", "Cherry", "E"],
+	  ["Personal Fitness", "Emery", "F"],
+	  ["English 10", "Emory", "G"]]).
+
+schedule(tessa,
+	 [["Personal Fitness", "Emery", "A"],
+	  ["Algebra II", "Foley", "B"],
+	  ["Concert Band", "Kuchan", "C"],
+	  ["French Language and Culture", "McDonie", "D"],
+	  ["English 10", "Gerard", "E"],
+	  ["Biology", "Rodier", "F"],
+	  ["The Modern World", "Masters", "G"]]).
+
+schedule(david,
+	 [["Enriched Algebra II", "Hibino", "A"],
+	  ["Biology", "L'Ecuyer", "B"],
+	  ["English 10", "Emory", "C"],
+	  ["Spanish III", "Perez-Lucafo", "D"],
+	  ["Chemistry", "Jannetti", "E"],
+	  ["The Modern World", "Ream", "F"],
+	  [nil, nil, "G"]]).
+
+schedule(theo,
+	 [["The Modern World", "Gibson;Spinale", "A"],
+	  ["Enriched Algebra II", "Hibino", "B"],
+	  ["Biology", "Kalf", "C"],
+	  ["Chemistry", "Fisher", "D"],
+	  ["Spanish Conversation", "Danos", "E"],
+	  ["English 10", "Gerard", "F"],
+	  ["Activity Fitness", "Bourgoin", "G"]]).
+
+schedule(megan,
+	 [["Biology", "Rodier", "A"],
+	  ["Enriched Algebra II", "Hibino", "B"],
+	  ["Latin II", "Song", "C"],
+	  ["Chemistry", "Fisher", "D"],
+	  ["The Modern World", "Perry", "E"],
+	  ["English 10", "Gerard", "F"],
+	  ["Personal Fitness", "Emery", "G"]]).
+
+schedule(sophia,
+	 [["Personal Fitness", "Emery", "A"],
+	  ["French III", "Kostousova", "B"],
+	  ["Algebra II", "Ragucci", "C"],
+	  ["Biology", "Valenti", "D"],
+	  ["English 10", "Scarfo", "E"],
+	  ["The Modern World", "Ream", "F"],
+	  ["Chemistry", "Iannuccilli", "G"]]).
+
+schedule(junyi,
+	 [["Enriched Algebra II", "Hibino", "A"],
+	  ["English 10", "Parsons", "B"],
+	  ["Chemistry", "Iannuccilli", "C"],
+	  ["Biology", "Valenti", "D"],
+	  ["Spanish III", "Holmes", "E"],
+	  ["The Modern World", "Ream", "F"],
+	  [nil, nil, "G"]]).
+
+schedule(robert,
+	 [["Enriched Algebra II", "Hibino", "A"],
+	  ["Java Programming", "Bezaire", "B"],
+	  ["Concert Band", "Kuchan", "C"],
+	  ["French Language and Culture", "McDonie", "D"],
+	  ["English 10", "Gerard", "E"],
+	  ["The Modern World", "Sheehy;Cherry", "F"],
+	  ["Biology", "Kalf", "G"]]).
+
+schedule(lasya,
+	 [["Enriched Algebra II", "Hibino", "A"],
+	  ["Java Programming", "Bezaire", "B"],
+	  ["Biology", "Valenti", "C"],
+	  ["Chemistry", "Jannetti", "D"],
+	  ["Hispanic Language and Culture", "Perez-Lucafo", "E"],
+	  ["The Modern World", "Sheehy;Cherry", "F"],
+	  ["English 10", "Paminger", "G"]]).
+
+schedule(nitsan,
+	 [["The Modern World", "Masters", "A"],
+	  ["English 10", "Pellerin;Bouchard", "B"],
+	  ["Activity Fitness", "Beauchesne", "C"],
+	  ["Biology", "Kalf", "D"],
+	  ["Mechanical Engineering", "Arabian", "E"],
+	  ["French III", "Kostousova", "F"],
+	  ["Algebra II", "Deshier", "G"]]).
+
+schedule(colby,
+	 [["English 10", "Parsons", "A"],
+	  ["Algebra II", "Foley", "B"],
+	  ["Music Production", "Sheehy;Peithmann", "C"],
+	  ["Biology", "Kalf", "D"],
+	  ["Chemistry", "Jannetti", "E"],
+	  ["French III", "Kostousova", "F"],
+	  ["The Modern World", "Ream", "G"]]).
+
+hasClass(Person, [ClassName | []]) :-
+    schedule(Person, [[]])
+
+iterateThroughSchedule(Person1, Person2, [Class | AllOtherClasses]) :-
+    schedule(Person1, )
+
+commonClass(Person1, Person2, CommonClass) :-
+	

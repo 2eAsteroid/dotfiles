@@ -1,0 +1,19 @@
+(define-global-minor-mode event-horizon-global-mode event-horizon-mode
+  (lambda ()
+    (unless (minibufferp)
+      (event-horizon-mode 1))
+    (if event-horizon-mode
+        (event-horizon--global-enable)
+      (event-horizon--global-disable))))
+
+(define-minor-mode event-horizon-mode
+  "Event Horizon's minor mode.
+
+This minor mode is used by `event-horizon-global-mode' and shouldn't actually be used."
+  :init-value nil
+  :interactive nil
+  :global nil
+  :keymap event-horizon-key-map
+  (if event-horizon-mode
+      (event-horizon--enable)
+    (event-horizon--disable)))

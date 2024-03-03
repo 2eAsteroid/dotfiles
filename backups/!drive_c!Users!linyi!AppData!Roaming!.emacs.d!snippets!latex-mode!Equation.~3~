@@ -1,0 +1,5 @@
+b# -*- mode: snippet -*-
+# name: Equation
+# key: ;eq
+# --
+\[ $0 \]

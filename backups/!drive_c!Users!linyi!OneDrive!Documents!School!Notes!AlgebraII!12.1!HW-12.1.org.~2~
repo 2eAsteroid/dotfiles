@@ -1,0 +1,15 @@
+#+TITLE: Homework 12/1
+#+SUBTITLE: p. 426 #6, 7, p. 430 #11, 13, 24, and p. 435 #11, 15
+#+AUTHOR: Daniel L.
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{amsthm}
+\newtheorem*{probem}{Problem}
+
+* Problem 6 (p. 426)
+\begin{problem}
+  Decide whether each equation is true for all positive integers $a$, $b$, and $c$.
+\end{problem}
+** Part A
+\begin{problem}
+  $a^{b} \pm b^{a}$
+\end{problem}

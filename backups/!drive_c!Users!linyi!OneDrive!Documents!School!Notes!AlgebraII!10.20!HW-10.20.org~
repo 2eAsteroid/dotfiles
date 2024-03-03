@@ -1,0 +1,88 @@
+#+TITLE: Homework 10/20
+#+AUTHOR: Daniel
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{amsmath}
+\newtheorem*{question}{Question}
+
+* Question 1 (pg. 251)
+\begin{question}
+Illustrate each addition equation on the complex plane.
+\end{question}
+** Part A
+\begin{question}
+(4 + i) + (2i) = 4 + 3i
+\end{question}
+[[file:c:/Users/linyi/Downloads/witeboard_3c7de1b0-7210-11ee-b178-45ee70f3b126.png]]
+** Part B
+\begin{question}
+(2i) + (4 + i) = 4 + 3i
+\end{question}
+[[file:c:/Users/linyi/Downloads/witeboard_3c7de1b0-7210-11ee-b178-45ee70f3b126(1).png]]
+** Part C
+\begin{question}
+(4 + i) + (4 - i) = 8
+\end{question}
+[[file:c:/Users/linyi/Downloads/witeboard_3c7de1b0-7210-11ee-b178-45ee70f3b126(2).png]]
+** Part D
+\begin{question}
+(4 + i) + (-3 + i) = 1 + 2i
+\end{question}
+[[file:c:/Users/linyi/Downloads/witeboard_3c7de1b0-7210-11ee-b178-45ee70f3b126(3).png]]
+** Part E
+\begin{question}
+$-8 + 3 = -5$
+\end{question}
+[[file:c:/Users/linyi/Downloads/witeboard_3c7de1b0-7210-11ee-b178-45ee70f3b126(4).png]]
+
+* Problem 3 (pg. 251)
+\begin{question}
+If $z = a + bi$ is a complex number, show that z and iz are the same distance from the origin.
+\end{question}
+If $z = a + bi$, then $iz$ is,
+\[ i(a + bi) = (-b + ai), \]
+and the distance of both would be,
+\[ \sqrt{a^2 + b^2} = \sqrt{a^2 + b^2}, \]
+and ,
+\[ \sqrt{b^2 + a^2}, \]
+which results in the same distance.
+
+* Problem 4 (pg. 251)
+\begin{question}
+For each complex number, find the distance to the origin on the complex plane.
+\end{question}
+** Part A
+\begin{question}
+$4 + i$
+\end{question}
+\[ \sqrt{4^2 + 1^2}  = \sqrt{17}\]
+** Part B
+\begin{question}
+$2 + i$
+\end{question}
+\[ \sqrt{2^2 + 1^2}  = \sqrt{4 + 1} = \sqrt{5} \]
+** Part C
+\begin{question}
+$3 - 2i$
+\end{question}
+\[ \sqrt{3^2 + 2^2} = \sqrt{9 + 4} = \sqrt{13} \]
+** Part D
+\begin{question}
+$6 + 5i$
+\end{question}
+\[ \sqrt{6^2 + 5^2} = \sqrt{36 + 25} = \sqrt{61} \]
+
+* Problem 9 (pg. 252)
+\begin{question}
+For each statement, decide whether you would represent the complex numbers as points or as vectors. Give reasons for your choice. Then draw a diagram.
+\end{question}
+** Part A
+\begin{question}
+The numbers $1, i, -1,$ and $-1$ lie on the vertices of a square on the complex numbers.
+\end{question}
+You would use points, because you're representing the vertices of a square, and vertices are points.
+[[file:c:/Users/linyi/Downloads/witeboard_47ac37c0-726b-11ee-87cd-e55727921af6.png]]
+** Part B
+\begin{question}
+You can use the parallelogram law to visualize the sum $(3 + 2i) + (7 - 6i)$.
+\end{question}
+

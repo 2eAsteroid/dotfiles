@@ -1,0 +1,24 @@
+;;; Commentary:
+;;; Alice Theme
+
+;;; Code:
+(eval-when-compile
+  (require 'cl-lib))
+
+(require 'autothemer)
+
+(unless (>= emacs-major-version 24)
+  (error "Requires Emacs 24 or later."))
+
+(autothemer-deftheme
+ alice "A theme based on its precursor, Crypt, the VSCode Alabaster theme, and the Rosé Pina color palette."
+
+ ((((class color) (min-colors #xFFFFFF))  ; Column 1, GUI/24bit
+   ((class color) (min-colors #xFF))))    ; Column 2, Xterm/256
+
+ ;Define our color palette
+ (surface      "#2C1A23"))
+
+
+(provide-theme 'alice)
+;;; alice-theme.el ends here

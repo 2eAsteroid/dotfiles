@@ -1,0 +1,26 @@
+#+TITLE: Classwork 9/19
+#+AUTHOR: Daniel
+
+* Problem 1
+f(x) = $\frac{x}{x^2 - 2x - 15}$
+
+f(x) = $\frac{x}{(x - 5)(x + 3)}
+
+[-\infin, +\infin], where x \ne 5, x \ne -3
+
+* Problem 2
+g(x) = $\frac{\sqrt{x}{x^2 - 9}}$
+
+[0, +\infin], where x \ne 3, x \ne -3
+
+* Problem 3
+f(x) = \frac{\sqrt{x + 4}}{\sqrt{x - 5}}
+
+(5, +\infin]
+
+* Problem 4
+f(x) = \frac{7}{x^4 - 16}
+
+[-\infin, +\infin], where x \ne 2, -2
+
+* Problem 

@@ -1,0 +1,25 @@
+#+TITLE: Pressure-Volume-Temperature-Amount Lab
+#+SUBTITLE: Objective: To determine the relationship between the volume, temperature and amount of a gas and the pressure of the gas.
+#+AUTHOR: Daniel L.
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{physics}
+#+LATEX_HEADER: \usepackage{siunitx}
+\newtheorem{question}{Discussion Question}[section]
+
+* Part 1: Volume vs. Amount
+** Directions
+1. Get a balloon and a meter stick (or 30cm ruler).
+2. Select a student who will blow up the balloon (me).
+3. Completely fill your lungs with air by inhaling. Exhale into the balloon.
+4. Measure the diameter along the 2 axes of the sphere. Calculate the average diameter.
+5. Repeat until the balloon has been completely filled.
+6. Calculate the average radius and the average volume of the balloon for each run.
+7. Plot a graph of average volume vs. amount (breaths). Use a best fit line and identify the relationship between volume and amount.
+** Data: Volume and Amount
+| Amount (breaths) | Length (cm) | Width (cm) | Average Radius (L + W)/4 | Volume (4/3 \pi cm^{3}) |
+|------------------+-------------+------------+--------------------------+-------------------------|
+|                1 |        11.6 |        4.4 |                      4.0 |                     270 |
+|                2 |        12.8 |       11.3 |                      6.0 |                     900 |
+|                3 |        13.8 |       11.6 |                      6.3 |                    1000 |
+|                4 |        17.1 |       12.8 |                      7.5 |                    1800 |
+#+TBLFM: $4=($2 + $3)/4;%.1f

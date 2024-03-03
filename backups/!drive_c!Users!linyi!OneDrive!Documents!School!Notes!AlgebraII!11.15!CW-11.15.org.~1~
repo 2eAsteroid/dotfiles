@@ -1,0 +1,19 @@
+#+TITLE: Classwork 11/15
+#+AUTHOR: Daniel L.
+
+* Warmup
+** Problem 1 (p. 321)
+*** Part A
+|        |  A |    B | C |  D |
+|--------+----+------+---+----|
+| Europe |  1 |  0.5 | 0 |  1 |
+| U.S.A  |  2 | -0.5 | 2 |  3 |
+| Asia   | -1 | -0.5 | 8 | 11 |
+*** Part B
+|          | A |    B |  C |  D |
+|----------+---+------+----+----|
+| Combined | 2 | -0.5 | 10 | 15 |
+
+* Notes
+
+* Practice

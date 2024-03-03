@@ -1,0 +1,66 @@
+class Matrix:
+    def __init__(self, *args):
+        if len(args) == 1:
+            args = args[0]
+        self.column_size = 0
+        self.row_size = float('inf')
+        self.data = []
+        for row in args:
+            self.column_size += 1
+            if self.row_size >= len(row):
+                self.row_size = len(row)
+                self.data.append(row[:self.row_size])
+
+    def __add__(self, other_matrix):
+        answer_matrix = []
+        if self.column_size == other_matrix.column_size and self.row_size == other_matrix.row_size:
+            def add_zip(tupOfTwoNum):
+                return tupOfTwoNum[0] + tupOfTwoNum[1]
+            for row_index in range(0, self.row_size - 1):
+                zipped_row = zip(self.data[row_index], other_matrix.data[row_index])
+                answer_matrix.append([add_zip(x) for x in zipped_row])
+            return Matrix(answer_matrix)
+        return False
+
+    def __sub__(self, other_matrix):
+        answer_matrix = []
+        if self.column_size == other_matrix.column_size and self.row_size == other_matrix.row_size:
+            def minus_zip(tupOfTwoNum):
+                return tupOfTwoNum[0] - tupOfTwoNum[1]
+            for row_index in range(0, self.row_size - 1):
+                zipped_row = zip(self.data[row_index], other_matrix.data[row_index])
+                answer_matrix.append([minus_zip(x) for x in zipped_row])
+            return Matrix(answer_matrix)
+        return False
+
+    @staticmethod
+    def _verticalize(matrix):
+        return Matrix(list(zip(*matrix.data)))
+
+    def __matmul__(self, other_matrix):
+        answer_matrix = []
+        if self.column_size == other_matrix.row_size:
+            verticalized_other_matrix = Matrix._verticalize(other_matrix)
+            def dot_product(tup_list):
+                ans = 0
+                for t in tup_list:
+                    ans += t[0] * t[1]
+                return ans
+
+            for row_index in range(0, self.row_size - 1):
+                zipped_dot_product = zip(self.data[row_index], verticalized_other_matrix.data[row_index])
+                answer_matrix.append(dot_product(zipped_dot_product))
+
+            return Matrix(answer_matrix)
+        return False
+
+
+
+
+x = Matrix([200, 150, 50], [100, 100, 85])
+print(f"X-Data: {x.data}")
+print(f"X-Size: {x.row_size} x {x.column_size}")
+y = Matrix([1, 1], [5, 10])
+print(f"Y-Data: {y.data}")
+print(f"Y-Size: {y.row_size} x {y.column_size}")
+print(x @ y)

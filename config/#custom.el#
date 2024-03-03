@@ -1,0 +1,27 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("d5bbe160956548915c3f68ee215b37bdc846353f854b8ad04332a447df50e96b" default))
+ '(package-selected-packages
+   '(zotra yatemplate xterm-color wgrep visual-fill-column vertico-posframe use-package uiua-ts-mode sudoku spinner spacious-padding sly selectric-mode schrute scala-mode rust-mode rubocop rich-minority raku-mode rainbow-mode rainbow-delimiters popup persistent-scratch pdf-tools password-generator pass page-break-lines ox-reveal ox-gfm org-roam org-re-reveal org-gcal org-edit-latex org-bullets org-anki orderless olivetti no-littering niceify-info multiple-cursors mines meow markdown-mode marginalia magit kurecolor keyfreq io-mode-inf io-mode insecure-lock indent-guide hydra highline highlight-numbers haskell-mode golden-ratio gnuplot-mode git-timemachine git-gutter-fringe gcmh flycheck flx flappymacs fira-code-mode eyebrowse expreg erlang emms embark-consult eldoc eat display-wttr ddate dashboard corfu company citeproc chemtable brainfuck-mode blackjack autothemer auctex-lua async all-the-icons-completion alert-toast ace-window ace-jump-buffer academic-phrases 2048-game)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe ((t :background "#3C2A33")))
+ '(header-line ((t :box (:line-width 4 :color "#261010" :style nil))))
+ '(header-line-highlight ((t :box (:color "#C5C5C5"))))
+ '(line-number ((t :background "#3C2A33")))
+ '(mode-line ((t :box (:line-width 4 :color "#261010" :style nil))))
+ '(mode-line-active ((t :box (:line-width 4 :color "#261010" :style nil))))
+ '(mode-line-highlight ((t :box (:color "#C5C5C5"))))
+ '(mode-line-inactive ((t :box (:line-width 4 :color "#261010" :style nil))))
+ '(tab-bar-tab ((t :box (:line-width 4 :color "systembuttonface" :style nil))))
+ '(tab-bar-tab-inactive ((t :box (:line-width 4 :color "grey75" :style nil))))
+ '(window-divider ((t :background "#3C2A33" :foreground "#3C2A33")))
+ '(window-divider-first-pixel ((t :background "#3C2A33" :foreground "#3C2A33")))
+ '(window-divider-last-pixel ((t :background "#3C2A33" :foreground "#3C2A33"))))

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Logarithm Base 10
+# key: ;lg
+# --
+\\log($0)

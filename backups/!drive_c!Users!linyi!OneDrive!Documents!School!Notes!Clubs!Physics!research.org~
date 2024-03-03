@@ -1,0 +1,13 @@
+#+TITLE: Researching Ideas for Beamline
+#+AUTHOR: Daniel
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{physics}
+\newtheorem*{definition}{Definition}
+
+
+* Sensitivity of 2 gB DDR2 SDRAMS to Protons and Heavy Ions
+\begin{definition}
+SDDRAMS are Synchronous Dynamic Random Access Memories. Dynamic RAM is random-access memory where the memory leaks away, so there is a periodic memory refresh. It being synchronous means that it operates at the same speed as the CPU or an external clock.
+\end{definition}
+

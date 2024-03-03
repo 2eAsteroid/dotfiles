@@ -1,0 +1,164 @@
+(when (display-graphic-p)
+  (require 'all-the-icons))
+
+
+(defgroup custom-mode-line
+  nil
+  "A group of custom mode-line faces.")
+
+
+
+
+;;; String truncation
+  (defvar-local sensible-split-width-threshold 160)                    ; Kinda set the actual value to nil, so we can just make a new variable for just the mode line
+  (defvar-local mode-line-truncate-length 9)                           ; How long should a string at least be until being truncated
+
+  (defun mode-line-truncate-string-p (str)                             ; Checks if a string should be truncated
+    "Returns non-nil if the string should be truncated"
+    (and (< (window-total-width) sensible-split-width-threshold)       ; Sometimes rainbow delimiters make me angry. Anyways, this returns the conjunction of whether the window's length is smaller than the split-threshold
+	 (> (length str) mode-line-truncate-length)                    ; annd whether the string is longer than the truncate length
+	 (not (one-window-p :no-minibuffer))))                         ; and whether there's more than one window (not counting the minibuffer)
+
+  (defun mode-line-truncate-string (str)                               ; Truncates the string function
+    "Returns the truncated string, else return the original string."
+    (if (mode-line-truncate-string-p str)                              ; If the string should be truncated
+	(concat (substring str 0 mode-line-truncate-length) "...")     ; Add the first 9 characters of the string and append a '...' at the end.
+      str))                                                            ; Else, return original string
+
+
+
+
+
+;;; Mode Line Read Only
+(defface mode-line-buffer-read-only-indicator                                       ; The face for the lock icon
+  '((t :foreground "#FFE375"
+       :inherit 'default))
+  "Face for my custom Buffer is Read-Only indicator on the mode-line."
+  :group 'custom-mode-line)
+
+    (defun mode-line-buffer-read-only ()                                            ; Checks if the buffer is read-only, and returns an icon if true
+      "Returns a lock icon if the buffer is read-only, else return an empty string"
+      (if buffer-read-only
+	  (format "%s" (all-the-icons-insert-faicon "lock"))                        ;   Returns a lock icon
+	""))                                                                        ;   Returns ""
+
+    (defvar-local mode-line-buffer-read-only                                        ; Mode-line construct before the buffer name
+	'(:eval
+	 (propertize (mode-line-buffer-read-only)
+		     'face 'mode-line-buffer-read-only-indicator))                  ; Sets its face to our designated yellow face
+      "Mode-line construct for a read-only buffer")
+
+
+;;; Major Mode Name
+(defface mode-line-major-mode-name-indicator                                                               ; Isn't used, but keep just in case
+  '((t :foreground "#C5C5C5"
+       :background "#3C2A33"
+       :inherit 'default))
+  "The face for displaying the major mode name for my custom mode-line."
+  :group 'custom-mode-line)
+
+  (defun mode-line-major-mode-name ()                                                                      ; Returns major mode name, capitalized and without the mode at the end
+    "Returns a capitalized major mode name without the '-mode' at the end."
+    (capitalize (string-replace "-mode" "" (symbol-name major-mode))))
+
+  (defun mode-line-major-mode-name-icon ()                                                                 ; Fucking hell.
+    "Return an icon appropriate for the major mode."
+    (let ((indicator (cond                                                                                 ; For all of the bottom cases
+		      ((derived-mode-p 'text-mode) (format "%s"                                            ;   If it's text, insert a text icon
+							   (all-the-icons-insert-faicon "file-text-o")))
+		      ((derived-mode-p 'prog-mode) (format "%s"                                            ;   If it's programming, insert a code icon
+							   (all-the-icons-insert-faicon "code")))
+		      ((derived-mode-p 'comint-mode) (format "%s"                                          ;   If it's a command/terminal mode, insert a terminal icon
+							     (all-the-icons-insert-faicon "terminal")))
+		      ((derived-mode-p 'org-mode) (format "%s"                                             ;   If it's an org-file, insert an org icon
+							  (all-the-icons-insert-fileicon "org")))
+		      (t (format "%s"                                                                      ;   Else, insert a yin-yang icon (for the lisp)
+				 (all-the-icons-insert-file-icon "yin-yang"))))))))
+
+  (defvar-local mode-line-major-mode-name                                                                  ; Construct for the mode-line
+      '(:eval
+       (propertize (concat                                                                                 ; Concatenates the icon and the mode name, separated by a space
+		    (mode-line-major-mode-name-icon)
+		    " "
+		    (mode-line-major-mode-name))))
+    "Mode-line construct for the major mode name, as well as an icon.")
+
+
+
+;;; Modified File
+(defface mode-line-buffer-modified-icon-modified                                                         ; A face for modified disk
+  '((t :foreground "#8FDA8F"
+       :family "FontAwesome"
+       :inherit 'default))
+  "The face for displaying the indicator that the current buffer is modified for my custom mode line."
+  :group 'default)
+
+(defface mode-line-buffer-not-modified-icon                                                              ; A face for saved disk
+  '((t :foreground "#C5C5C5"
+       :family "FontAwesome"
+       :inherit 'default))
+  "The face for displaying the indicator that the current buffer isn't modified, for my custom mode line."
+  :group 'default)
+
+  (defvar-local mode-line-buffer-modified-icon                                                           ; The green disk indicating that the buffer is saved
+      '(:eval
+	(format "%s" (all-the-icons-faicon "floppy-o" :face 'mode-line-buffer-modified-icon-modified)))
+    "Returns a green floppy disk indicating that the buffer is modified, and can be saved.")
+
+  (defvar-local mode-line-buffer-modified-icon-not                                                       ; The normal white disk indicating that the buffer is saved
+      '(:eval
+	(format "%s" (all-the-icons-faicon "floppy-o" :face 'mode-line-buffer-not-modified-icon)))
+    "Returns a normal white floppy disk indicating that the buffer isn't modified.")
+
+  (defun mode-line-buffer-modified-toggle ()                                                             ; Returns an icon for the save state of the buffer. This is feeling a little bit repetitive now.
+    "Returns an icon depending on whether the buffer is modified or not."
+    (if (buffer-modified-p)
+	(setq mode-line-buffer-modified-p mode-line-buffer-modified-icon)
+      (setq mode-line-buffer-modified-p mode-line-buffer-modified-icon-not)))
+
+  (defvar-local mode-line-buffer-modified-p                                                              ; The mode-line construct for the icon
+      mode-line-buffer-modified-icon-not
+    "Mode-line construct for the save state of a buffer.")
+
+  (add-function-to-multiple-hooks 'mode-line-buffer-modified-toggle '(first-change-hook                  ; Toggle/try to toggle the buffer-modified function after these hooks
+							       after-save-hook
+							       after-revert-hook
+							       after-change-major-mode-hook))
+
+  (defadvice undo (after mode-line-when-buffer-modified activate)                                        ; Makes 'undo' also toggle the ^ function
+    (mode-line-buffer-modified-toggle))
+
+
+
+;;;Time Stuff
+  (setq display-time-interval 1)                         ; Updates the time every second
+  (setq-default display-time-default-load-average nil)   ; Stops the time from displaying the load average
+  (setq-default display-time-format "%k:%M:%S (%z)")     ; Sets the time format to 24 Hour Time, showing 0s, and showing the minutes and seconds, and the time zone difference
+(display-time)                                         ; Starts displaying the time
+
+
+
+;;; Risky Variable
+  (dolist (construct '(mode-line-buffer-read-only
+		       mode-line-major-mode-name
+		       mode-line-modified-p))
+    (put construct 'risky-local-variable t))
+
+
+
+
+;;; Create Mode Line
+  (setq-default mode-line-format
+		'("%e"
+		  mode-line-buffer-read-only
+		  "   "
+		  '(:eval (mode-line-truncate-string (if (vc-registered (buffer-file-name))
+							(format "%s (%s #%s)" buffer-file-name mode-line-major-mode-name (vc-responsible-backend (buffer-file-name)))
+						      (format "%s %s" buffer-name mode-line-major-mode-name))))
+		  '(:eval (propertize
+			   " " 'display
+			   `((space :align-to (- (+ right right-fringe right-margin)
+						 ,(+ 3 (string-width display-time-string)))))))
+		  display-time-string
+		 ))
+

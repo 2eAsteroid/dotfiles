@@ -1,0 +1,10 @@
+#+TITLE: The Beginnings of Industrialization
+#+AUTHOR: Daniel
+#+LATEX_HEADER: \usepackage{amsthm}
+
+* Setting the Stage
+\newtheorem*{vocabulary}{Key Term}
+
+\begin{vocabulary}
+The Industrial Revolution is the period of greatly-increased output of machine-made goods, starting in England. Started in the middle 1700s, and lasted until the middle 1800s.
+\end{vocabulary}

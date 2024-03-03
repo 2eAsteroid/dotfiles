@@ -1,0 +1,199 @@
+% Created 2023-10-20 Fri 22:29
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\author{Daniel}
+\date{\today}
+\title{Homework 10/17}
+\hypersetup{
+ pdfauthor={Daniel},
+ pdftitle={Homework 10/17},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.1 (Org mode 9.6.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newtheorem*{problem}{Problem}
+
+\section{Problem 1 (pg. 235)}
+\label{sec:org98aab34}
+\begin{problem}
+Find the solutions, if they exist, to $x^4 - 121 = 0$ that meet each of the following conditions.
+\end{problem}
+\subsection{Part A}
+\label{sec:orgf8cd5a8}
+\begin{problem}
+The solution is in $\mathbb{N}$
+\end{problem}
+There are no solutions in the set of natural numbers, because the four possible solutions would be \(\pm\sqrt{11}\) and \(\pm\sqrt{11}i\), and none of those are natural numbers.
+\subsection{Part B}
+\label{sec:orgfe93104}
+\begin{problem}
+The solution is in $\mathbb{Z}$ but not in {N}.
+\end{problem}
+There are no solutions in the set of integers, because there are no rational solutions for that equation.
+\subsection{Part C}
+\label{sec:org059abbd}
+\begin{problem}
+The solution is in $\mathbb{Q}$ but not in $\mathbb{Z}$.
+\end{problem}
+There are no solutions in the set of rational numbers, because \(\sqrt{11}\) is irrational, and \(\sqrt{11}i\) is imaginary.
+\subsection{Part D}
+\label{sec:org649292c}
+\begin{problem}
+The solution is in $\mathbb{R}$ but not in $\mathbb{Q}$.
+\end{problem}
+There are two solutions that are irrational, \(\pm\sqrt{11}\).
+\subsection{Part E}
+\label{sec:org89ff2c4}
+\begin{problem}
+The solution is not in $\mathbb{R}$.
+\end{problem}
+There are two solutions that aren't real, \(\pm\sqrt{11}i\).
+
+\section{Problem 2 (pg. 235)}
+\label{sec:org14e067b}
+\begin{problem}
+Use the quadratic polynomial $x^2 - 4x + 13$.
+\end{problem}
+\subsection{Part A}
+\label{sec:org158cc57}
+\begin{problem}
+Find its roots.
+\end{problem}
+The roots of \(x^2 - 4x + 13\), when you use the quadratic formula,
+\[ \frac{-B}{2} \pm \sqrt{\frac{B^2}{4} - C} \]
+\begin{center}
+you get,
+\end{center}
+\begin{gather}
+\text{Roots} = \frac{4}{2} + \sqrt\{\frac{(-4)^2}{4} - 13\}, \quad
+\frac{4}{2} - \sqrt\{\frac{(-4)^2}{4} - 13\} \nonumber\\[0pt]
+\text{Roots} = 2 + \sqrt{4 - 13}, \quad
+2 - \sqrt{4 - 13} \nonumber\\[0pt]
+\text{Roots} = 2 + \sqrt{-9}, \quad
+2 - \sqrt{-9} \nonumber\\[0pt]
+\text{Roots} = 2 + 3i, \quad
+2 - 3i \nonumber\\[0pt]
+\end{gather} \nonumber\\[0pt]
+\subsection{Part B}
+\label{sec:org9e5444b}
+\begin{problem}
+Find the sum of its roots.
+\end{problem}
+The sum of the roots of a quadratic polynomial for \(p = ax^2 + bx + c\), is b. Therefore, the sum of the roots of \(x^2 - 4x + 13\) is -4.
+\subsection{Part C}
+\label{sec:org68f155c}
+\begin{problem}
+Find the product of its roots.
+\end{problem}
+The product of the roots of of a quadratic polynomial for \(p = ax^2 + bx + c\), is c. Therefore, the product of the roots of \(x^2 - 4x + 13\) is 13.
+\subsection{Part D}
+\label{sec:org6bbf162}
+\begin{problem}
+Find the sum of the squares of its roots.
+\end{problem}
+Using the identity, \(a^2 + b^2 = (a + b)^2 - 2ab\),
+\begin{gather}
+a\textsuperscript{2} + b\textsuperscript{2} = (a + b)\textsuperscript{2} - 2ab \nonumber\\[0pt]
+a\textsuperscript{2} + b\textsuperscript{2} = (-4)\textsuperscript{2} - 2(13) \nonumber\\[0pt]
+a\textsuperscript{2} + b\textsuperscript{2} = 16 - 26 \nonumber\\[0pt]
+a\textsuperscript{2} + b\textsuperscript{2} = -10 \nonumber\\[0pt]
+\end{gather} \nonumber\\[0pt]
+
+\section{Problem 3 (pg. 235)}
+\label{sec:orgfec0c74}
+\begin{problem}
+Find all roots of the polynomial $x^3 - 64$.
+\end{problem}
+
+Using the \textbf{Fundamental Theorem of Algebra}, there are 3 possible solutions to \(x^3 - 64\). You can also use the identity, \(x^3 - y^3 = (x - y)(x^2 + yx + y^2)\) to factor that polynomial, so,
+
+\begin{gather}
+p = x\textsuperscript{3} - 64 \nonumber\\[0pt]
+p = x\textsuperscript{3} - (4)\textsuperscript{3} \nonumber\\[0pt]
+p = (x - 4)(x\textsuperscript{2} + 4x + 16) \nonumber\\[0pt]
+p = (x - 4)(x - (-2 + 2\sqrt{3}i))(x + (-2 - 2\sqrt{3}i)) \nonumber\\[0pt]
+p\textsubscript{\text{roots}} = 4, -2 + 2\sqrt{3}i, 2 + 2\sqrt{3}i \nonumber\\[0pt]
+\end{gather} \nonumber\\[0pt]
+
+\section{Problem 4 (pg. 235)}
+\label{sec:orgfded96a}
+\begin{problem}
+Find a complex number $z = a + bi$ with a and b real numbers, that satifies each equation.
+\end{problem}
+\subsection{Part A}
+\label{sec:orgdf484b7}
+\begin{problem}
+$z + (4 - 3i) = 6 + 8i$
+\end{problem}
+
+\begin{gather}
+z + (4 - 3i) = 6 + 8i \nonumber\\[0pt]
+z = (6 + 8i) - (4 - 3i) \nonumber\\[0pt]
+z = 6 - 4 + 8i + 3i \nonumber\\[0pt]
+z = 2 + 11i
+\end{gather} \nonumber\\[0pt]
+\subsection{Part B}
+\label{sec:org2f16a57}
+\begin{problem}
+$z \times (4 - 3i) = 6 + 8i$
+\end{problem}
+
+\begin{gather}
+z = \frac{6 + 8i}{4 - 3i} \nonumber\\[0pt]
+z = \frac{6 + 8i}{4 - 3i} \texttimes{} \frac{4 + 3i}{4 + 3i} \nonumber\\[0pt]
+z = \frac{(6 + 8i)(4 + 3i)}{(4 - 3i)(4 + 3i)} \nonumber\\[0pt]
+z = \frac{24 + 32i + 18i - 24}{ 16 + 9} \nonumber\\[0pt]
+z = \frac{50i}{25} \nonumber\\[0pt]
+z = 2i \nonumber\\[0pt]
+\end{gather} \nonumber\\[0pt]
+
+\section{Problem 5 (pg. 235)}
+\label{sec:org935f069}
+\begin{problem}
+Given two complex numbers, $z = 2 - 5i$ and $w = -3 + 7i$, show that $\overline{zw} = (\bar{z})(\bar{w})$.
+\end{problem}
+
+\begin{gather}
+\overline{zw} = (\bar{z})(\bar{w}) \nonumber\\[0pt]
+\overline{(2 - 5i)(-3 + 7i)} = (2 + 5i)(-3 - 7i) \nonumber\\[0pt]
+\overline{(-6 + 15i + 14i + 35)} = (-6 - 15i - 14i + 35) \nonumber\\[0pt]
+\overline{29 + 29i} = 29 - 29i \nonumber\\[0pt]
+29 - 29i = 29 - 29 \nonumber\\[0pt]
+\end{gather} \nonumber\\[0pt]
+
+\section{Problem 6 (pg. 235)}
+\label{sec:orgaeae147}
+\begin{problem}
+What are complex numbers?
+\end{problem}
+
+Complex numbers (\(\mathbb{C}\)) are numbers with both a real and an imaginary part, that can be simplified into the standard form \(z = a + bi\).
+
+\section{Problem 7 (pg. 235)}
+\label{sec:org37f4ee7}
+\begin{problem}
+What two numbers have a sum of 20 and a product of 109?
+\end{problem}
+
+The quadratic expression with the roots that would satisfy those requirements is \(x^2 + 20x + 109\). If you use the quadratic formula,
+\[ \frac{-B}{2} \pm \sqrt{\frac{B^2}{4} - C} \]
+which would give you,
+\end{document}

@@ -1,0 +1,29 @@
+<title>manifesto on turing the gay man</title>
+
+<h1> Alan Turing, a Gay Man who Revolutionized Computer Science. </h1>
+
+<p>
+  He theorized about a turing machine, which is a machine that is basically an infinite roll of paper, where an eye scanner thing can either write on it, scan what's written, or move left and right, or use what's scanned to do some logic for stuff.
+</p>
+
+<h1> Why there's so many Javascript Frameworks </h1>
+
+<p>
+
+  We don't need these frameworks. Why are there so many? I think this is because Javascript is just a hellscape to program in, so we keep on trying to "make it better", but it's impossible.
+</p>
+
+<h1> Sleep Sort, a cool sort </h1>
+
+<p>
+  Sleep sort is a sort where you run each of the numbers as a separate thread, and tell it to sleep that number's amount, so that when it returns, it return in the appropriate time.
+
+</p>
+
+
+<h1> Cascading Cases </h1>
+
+<p>
+  In C and a lot of other languages, you can have cases cascade into the next case, basically giving the same things to do for a bunch of cases.
+</p>
+

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Fake Log
+# key: ;fakelogarithm
+# --
+L_{$1}($0)

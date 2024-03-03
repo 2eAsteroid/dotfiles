@@ -1,0 +1,13 @@
+#+TITLE: Ultimate Fizz Buzz (Fizz Buzz in a lot of Languages)
+#+AUTHOR: Daniel
+
+* Python
+#+BEGIN_SRC python
+  def fizzBuzz(count: int):
+      if count % 3 == 0:
+	  print("Fizz")
+      elif count % 5 == 0:
+	  print("Buzz")
+      else:
+	  print(count)
+#+END_SRC

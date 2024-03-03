@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fracexpt
+# key: fracexpt
+# --
+$1^{\frac{$2}{$0}}

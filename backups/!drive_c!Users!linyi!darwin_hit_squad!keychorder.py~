@@ -1,0 +1,106 @@
+import copy
+from random import randint
+from string import ascii_lowercase, digits, punctuation
+
+class Graph:
+    def __init__(self, data):
+        self.connections = {} # {Node : Weight}
+        self.data = data
+
+    def add_edge(self, node, weight):
+        self.connections.update({node: weight})
+
+    def travel_to(self, weight):
+        for key, value in self.connections.items():
+            if value == weight:
+                return key
+        return None
+
+
+class Keyboard:
+    def __init__(self):
+        self.keyboard = [
+            [(), (), (), (), (), []], # Left-most Column
+            [(), (), (), [], (), ()],
+            [(), (), [], [], (), ()],
+            [(), (), (), [], (), ()],
+            [(), (), (), (), ()],     # Space bar not included
+            [(), (), (), (), ()],
+            [(), (), (), (), ()],
+            [(), (), (), (), ()],
+            [(), (), [], (), (), ()],
+            [(), (), [], (), (), ()],
+            [(), (), [], (), ()],
+            [(), (), [], (), ()],
+            [(), (), [], ()],
+            [(), (), ()],
+            [()],
+            [()]
+        ]
+
+
+def random_selection(domain):
+    magic_number = randint(0, len(domain) - 1)
+    returned_value = domain.pop(magic_number)
+    return returned_value
+
+class DarwinianKeyboard(Keyboard):
+    def __init__(self):
+        super().__init__()
+
+        available_keys = list(ascii_lowercase) + list(digits) + list(punctuation) + ["C-"] + ["M-"] + ["C-"] + ["M-"] + ["TAB"] + ["BACKSPACE"] + ["DEL"] + ["S-"] + ["SHIFT"] + ["ESC"] + ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "HOME", "END"]
+        # [26:] can be doubled up
+        
+        self.keyboard_layout = copy.deepcopy(self.keyboard)
+        self.home_keys = []
+
+        for i, column in enumerate(self.keyboard):
+            for j, key in enumerate(column):
+                if instance(self.keyboard[i][j], tuple):
+                    self.keyboard_layout[i][j] = random_selection(available_keys)
+                elif instance(self.keyboard[i][j], list):
+                    self.keyboard_layout[i][j] = random_selection(available_keys)
+                    self.home_keys.append((i, j))
+
+                if randint(0, 1) == 1:
+                    self.keyboard_layout[i][j] = (self.keyboard_layout[i][j], random_selection(available_keys))
+
+
+    def create_keyboard_graph(self):
+        def decompile(string):
+            key = string[0]
+
+            coordinate_one = string[string.index(":") + 1:string.index("~")]
+            coordinate_two = string[string.index("~") + 1:]
+
+            return (key, coordinate_one, coordinate_two)
+        
+        self._home_keys_nodes = []
+        graph_nodes = []
+        
+        for i, column in enumerate(self.keyboard_layout):
+            for j, key in enumerate(column):
+                if (i, j) in self.home_keys:
+                    home_key_node = Graph(f"{key}:{i}~{j}")
+                    self._home_keys_nodes.append(home_key_node)
+                    graph_nodes.append(home_key_node)
+                else:
+                    key_node = Graph(f"{key}:{i}~{j}")
+                    graph_nodes.append(home_key_node)
+
+        for node in graph_nodes:
+            key, x_coordinate, y_coordinate = decompile(node.data)
+            nearby_nodes = set()
+            for other_nodes in graph_nodes:
+                
+            
+                    
+    def fitness(self, data_set):
+        # Dijkstra's algorithm, basically
+
+                
+class Arena:
+    def __init__(self):
+        self.keyboards = []
+        for _ in range(500):
+            keyboards.append(DarwinianKeyboard)

@@ -1,0 +1,13 @@
+def solve(N: int) -> str:
+    ...
+
+
+def main():
+    T = input()
+    for _ in range(int(T)):
+        N = input()
+        print(solve(N))
+
+
+if __name__ == '__main__':
+    main()

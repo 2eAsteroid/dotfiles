@@ -1,0 +1,24 @@
+#+TITLE: HW 9/14 2023
+#+AUTHOR: Daniel Lin
+
+* Polynomial Basics
+
+ - *Polynomial* :: A sum of monomials
+ - *Monomial* :: An expression that you can write as a product of a nonzero number, and one or more variables, each raised to a non-negative integer exponent.
+ - *Coefficient* :: The nonzero number that is the product of one or more variables in a monomial.
+ - *Term* :: The monomials in the polynomial.
+ - *Degree* :: The degree of all its terms -- the degree of a monomial is sum of all the exponents of each variable in the monomial.
+ - *Normal Form* :: What you get when you apply the basic rules of algebra, collect like terms, and sort the monomials by degree, highest to lowest.
+
+* Rules
+
+ - Two polynomials are equivalent if you can transform them into one another by applying the basic rules of algebra.
+ - An identity is a statement that two polynomials are equivalent.
+ - If two polynomials are equivalent, then they define equal functions, and will return the same output given the same input.
+
+* Theorems
+\newtheorem{zeroproductproperty}{The Zero Product Property}
+
+\begin{zeroproductproperty}
+If both a and b are real numbers with a product of 0, then either a or b (or both) must be 0.
+\end{zeroproductproperty}

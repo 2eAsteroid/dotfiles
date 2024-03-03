@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Graph Equation
+# key: ;g
+# --
+
+y = $0

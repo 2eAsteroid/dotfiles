@@ -1,0 +1,25 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("2a3980325e358f1c2e47ae4f86264d8dd0e5847388bdf10c26e7c3925c0d645e" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fringe ((t :background "#3C2A33")))
+ '(header-line ((t :box (:line-width 4 :color "#77D5AB" :style nil))))
+ '(header-line-highlight ((t :box (:color "#C5C5C5"))))
+ '(line-number ((t :background "#3C2A33")))
+ '(mode-line ((t :box (:line-width 4 :color "#77D5AB" :style nil))))
+ '(mode-line-active ((t :box (:line-width 4 :color "#77D5AB" :style nil))))
+ '(mode-line-highlight ((t :box (:color "#C5C5C5"))))
+ '(mode-line-inactive ((t :box (:line-width 4 :color "#77D5AB" :style nil))))
+ '(tab-bar-tab ((t :box (:line-width 4 :color "systembuttonface" :style nil))))
+ '(tab-bar-tab-inactive ((t :box (:line-width 4 :color "grey75" :style nil))))
+ '(window-divider ((t :background "#3C2A33" :foreground "#3C2A33")))
+ '(window-divider-first-pixel ((t :background "#3C2A33" :foreground "#3C2A33")))
+ '(window-divider-last-pixel ((t :background "#3C2A33" :foreground "#3C2A33"))))

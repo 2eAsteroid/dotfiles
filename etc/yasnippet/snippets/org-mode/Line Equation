@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Line Equation
+# key: ;l
+# --
+\\[ $0 \\]

@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "c:/Users/linyi/OneDrive/Documents/Wiki/20240112082055-hierarchy_of_life.org")
+ (front-context-string . "\nThe hierarchy o")
+ (rear-context-string . "erarchy of Life\n")
+ (position . 95)
+ (last-modified 26017 15822 479684 0))
+)

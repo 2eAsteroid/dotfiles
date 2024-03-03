@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Only-Exponent
+# key: ;x
+# --
+^{$0}

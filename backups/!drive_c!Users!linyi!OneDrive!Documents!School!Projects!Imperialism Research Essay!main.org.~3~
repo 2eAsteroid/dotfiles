@@ -1,0 +1,9 @@
+#+OPTIONS: title:nil
+#+OPTIONS: author:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: date:nil
+#+LATEX_HEADER: \title{Lorem Ipsum}
+#+LATEX_HEADER: \date{5 Dec 2023}
+#+LATEX_HEADER: \author[1]{Daniel Lin}
+#+LATEX_HEADER: \affil[1]{F Block: Modern Times}
+#+bibliography: ref.bib

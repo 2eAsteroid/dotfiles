@@ -1,0 +1,208 @@
+// an end-of-line comment!
+
+/* 
+    another comment...
+    which could be many lines...
+*/
+
+/* or less than one! */
+
+/* VARIABLES */
+/* >> basic values */
+let x <num>: 5;
+let y <num>: 2;
+let greeting <string>: "Hello world!";
+let boolean <bool>: true;
+const PI <num>: 3.14; // constants are computed at compile-time
+
+/* >> groups */
+let my_group <group[num]>: (1, 2, 3);
+let my_other_group <group[num]>: (1..6); // from range object
+let my_third_group <group[num]>: (for item in my_other_group {item + 1}); // from comprehension
+
+/* >> arithmetic */
+include math; // imports
+let some_math <num>: 1 + 2 * (4 - 2) ^ -5 - math.sin(3.14);
+let with_strings_woah <string>: "hello" + " " + "world";
+let even_cooler <string>: "what" + "?!?" * 10;
+let even_with_groups <group[num]>: (1, 2, 3) + (4, 5, 6) * 2;
+
+/* TYPES */
+/* >> builtins */
+<num> // number
+<string> // string
+<bool> // boolean
+<group[T]> // group of type T
+<type> // types as first-class objects, example: 'let num_or_string <type> = <num> | <string>;'
+
+/* >> function types */
+<num -> num -> num> // function that maps num to num to num
+<num -> <num -> num>> // function that maps num to function that maps num to num
+
+/* >> custom types */
+let transform[T, U] <type> = <T -> U>; // generics
+
+/* >> frames */
+frame Person: {
+    name <string>,
+    age <num>,
+}
+
+frame AmericanNationality: {
+    ssn <num>,
+    passport_no <num>,
+    is_immigrant <bool>,
+}
+
+frame Success[T]: {
+    value [T],
+}
+
+frame Error: {
+    message <string>,
+}
+
+/* >> unions */
+frame Output[T]: Success[T] | Error;
+
+/* >> intersections */
+frame AmericanCitizen: Person & American;
+
+/* >> casewise */
+casewise Status {
+    King,
+    Aristocrat,
+    Soldier,
+    Peasant,
+}
+
+/* >> behaviors */
+behavior imageFile {
+    getRGB <file -> group[group[num]]>,
+    getGreyscale <file -> group[num]>,
+}
+
+behavior humanBehavior {
+    makeMoney <num -> num>,
+    getNewFriends <num -> group[Person]>,
+}
+
+/* FUNCTIONS */
+let add <num -> num -> num>: a b -> a + b; // declaration
+let five <num>: add(2 3); // call
+
+/* >> currying */
+let add3 <num -> num>: add(3); // 'a b -> a + b' is interpreted as 'a -> b -> a + b'
+let also_five <num>: add3(2);
+
+/* >> functions as first-class objects */
+let map[T, U] <transform[T, U] -> group[T] -> group[U]>: (transformation target) -> (transformation(item) for item in target);
+
+/* >> closures */
+let yet_another_adder <num -> <num -> num>>: x -> (y -> x + y);
+let add3_again <num -> num>: yet_another_adder(3);
+
+/* >> anonymous functions */
+let mapped <group[string]> = map[num, string](
+    (n -> format(n)) 
+    my_group
+);
+
+/* CONTROL FLOW */
+/* >> implementations with behavior */
+implement humanBehavior on AmericanCitizen {
+    makeMoney: (hours) -> hours * 100; // No need to type if behavior already defined the types
+    getNewFriends: (num_new_friends) -> (Person {name: "Friend!", age: 1000} for _ in 0..num_new_friends)
+}
+
+/* >> match cases with casewise */
+let optional <Maybe[num]>: Some(5);
+
+match optional {
+    Some(num) -> print(num),
+    Nothing -> {
+        printf("There is no number!");
+        printf(":(");
+    },
+}
+
+/* >> more on functions */
+let greater_element <num -> num -> num>: (a b) -> if a > b {a} else {b};
+
+let complex_function_with_statements <num -> num>: x -> {
+    let plus_one: x + 1; // statement
+    plus_one + plus_one
+} // implicit returns
+
+let void_function <num -> Nothing>: x -> {
+    printf("x");
+}
+
+let cast_to_positive <string -> num>: str -> {
+    let my_num: str as <num>; // casting, returns a Maybe type (defined earlier, but it's built-in really)
+    if (my_num <= 0) {-1} // implicitly return
+
+    match my_num {
+        Some(number) -> number, // more implicit returns...
+        Nothing -> -1, // and more.
+    }
+}
+
+/* >> conditionals */
+if 2 > 3 {
+    printf("Hey");
+} else {
+    printf("Hello");
+}
+
+/* >> loops */
+for i in 1..10 {
+    printf(i);
+}
+
+let condition <bool>: true;
+let mut a <num>: 1; // mutability
+let b <num>: 100;
+
+while condition {
+    if a > b { 
+        condition: false;
+    } else  if (a > 10) { 
+        break;
+    } else if (a > 11) {
+        continue;
+    } else {
+        a: a + 1; // mutable types can be changed
+    }
+}
+
+/* >> main */
+main: {
+    printf("Hello!"); // I/O, no monads needed!
+    let age <num>: "5" as <num>;
+    printf("You are {age} years old!"); // formatted
+    printf("You are \{age\} years old!"); // escaped, so not formatted
+}
+
+/* IMPORTS */
+include math;
+from time include Time, sleep, date, current;
+
+/* >> usage */
+let my_num <num>: math.sin(3);
+let current_time <Time>: current();
+
+/* MACROS */
+define COOL: "this programming language";
+define loop(times block): {
+    for _ in 0..times {
+        block
+    }
+}
+
+/* >> usage */
+let do_stuff: () -> {
+    loop(10, {
+        printf("Hola");
+    }) // times is 10, block is the code block
+}

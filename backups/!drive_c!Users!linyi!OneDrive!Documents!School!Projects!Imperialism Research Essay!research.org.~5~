@@ -1,0 +1,61 @@
+#+title: Research on Imperialism in Taiwan
+#+author: Daniel L.
+#+date:
+#+latex_header: \usepackage{biblatex}
+#+bibliography: ref.bib
+#+cite_export: csl
+
+* Source 1                                                       :Background:
+** Sidenotes
+It's really hard to find any solid resources on this topic; it's not talked about significantly.
+** Reference
+[cite:@chongTaiwaneseAboriginalIdentity2019]
+** Note 1                                             :Section::Kuomingtang:
+ - Influx of Han Chinese drastically changed the lives of the Indigenous peoples
+   - Pro Han-Chinese policies were encouraged, which decreased the political power of the Indigenous.
+   - Gvt. banned various cultural practices, like the Taiwanese dialects (Hakka, Hokkien, etc) and Aboriginal languages
+     - Banned Taiwanese soap operas and literature
+ - Compelled the Aboriginal peoples to (1) become patriotic Han Chinese citizens or (2) become resisters and protest for rights.
+
+* Source 2                                                         :Database:
+** Reference
+[cite:@Kuomintang2023]
+** Note 1                                             :Section::PartyAssets:
+ - KMT forced local Japanese firms to "donate" money to them
+   - implementation of racketeering?
+ - The KMT was acclaimed for being the richest political party, through their leeching of assets from local companies, firms, people, etc.
+ - With wealth comes power (grassroots vs. big corp) -- this wealth disparity could've caused political unrest
+* Source 3                                                              :Web:
+** Reference
+[cite:@horeTaiwanLogicImperialism2022]
+** Note 1                                                     :Paragraph::5:
+ - After the KMT fled to Taiwan, they established martial law until 1987.
+   - Martial law basically made the military the rulers of the state
+** Note 2                                                     :Paragraph::8:
+ - Opposition to the KMT increased, and in 1986, the KMT were forced to have free elections
+* Source 4                                                           :Review:
+** Reference
+[cite:@ZiomekBerryMusha]
+** Note 1                                                     :Paragraph::5:
+ - The KMT government suppressed information about the treatment of the Aboriginal people
+* Source 5                                                         :Database:
+** Reference
+[cite:@KneelApologize762023]
+** Note 1                                                     :Paragraph::4:
+ - The KMT massacred people en masse during Chiang Kai-shek's reign
+ - Massacre is known as the 228 Massacre
+** Note 2                                                    :Paragraph::17à19:
+ - The KMT started their rule in Taiwan with the people originally there believing in them
+   - The original people believed that the KMT would treat them like actual people, after Japanese colonization
+ - However, when the KMT came, they "treated Taiwan more as a conquered territory than a liberated people"
+** Note 3                                                 :Paragraph::20à22:
+ - When KMT soldiers attacked a widow selling contraband, the whole island protested, but the KMT treated it as an insurrection, which caused massacres
+   - The original Taiwanese thought the protest was a way for political reform
+* Source 6                                                             :Book:
+** Reference
+[cite:@jacobsDemocratizingTaiwan2012]
+** Note 1                                                         :Page::24:
+ - When the KMT took over from the JP government, the Taiwanese were excluded from
+
+* Bibliography
+ #+print_bibliography:

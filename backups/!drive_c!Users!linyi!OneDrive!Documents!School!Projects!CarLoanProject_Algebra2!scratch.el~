@@ -1,0 +1,2 @@
+(defun monthly-payment-to-cost-of-car (months-to-pay-off monthly-payment)
+  (* months-to-pay-off monthly-payment))

@@ -1,0 +1,28 @@
+
+def linear_search(inputted_list: [int], search_for: int):
+    for index, item in enumerate(inputted_list):
+        if item == search_for:
+            return (True, index)
+    return (False, -1)
+
+def binary_search(inputted_list: [int], search_for: int, search_index: int = 0): # Must be a sorted list
+    if len(inputted_list) > 1:
+        median_index = len(inputted_list) // 2
+        if inputted_list[median_index] < search_for:
+            inputted_list = inputted_list[median_index:]
+            search_index = median_index
+            return binary_search(inputted_list, search_for, median_index)
+        elif inputted_list[median_index] > search_for:
+            inputted_list = inputted_list[:median_index]
+            search_index = median_index
+            return binary_search(inputted_list, search_for, median_index)
+        else:
+            return (True, median_index)
+    else:
+        if inputted_list[0] == search_for:
+            return (True, search_index)
+        else:
+            return (False, -1)
+
+
+def bubble_sort(inputted_list: [int]

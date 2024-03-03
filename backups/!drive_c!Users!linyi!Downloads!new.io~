@@ -1,0 +1,3 @@
+Vehicle := Object clone
+Vehicle description := "Something to take you to places."
+Vehicle drive := method("Vroom vroom !" println)

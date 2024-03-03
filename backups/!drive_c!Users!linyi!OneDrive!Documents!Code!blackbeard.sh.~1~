@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DOWNLOAD_URLS=( )
+INCREMENT=0
+while read LINE
+do
+    DOWNLOAD_URLS[INCREMENT]=$LINE
+    INCREMENT=$(($INCREMENT + 1))
+done < urls.txt
+
+
+
+
+for URL in DOWNLOAD_URLS
+do
+    spotdl $URL
+done

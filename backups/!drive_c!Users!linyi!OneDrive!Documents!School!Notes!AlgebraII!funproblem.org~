@@ -1,0 +1,13 @@
+#+TITLE: Really Fun Problem
+#+AUTHOR: Daniel
+
+* Problem
+Factorize x^2 - y^2 + 2yz - z^2.
+
+* First Step
+The back half of the expression is -( y^2 - 2yz + z^2), which goes to (y - z)(y - z).
+
+* Second Step
+Now you have x^2 - (y - z)^2, so you can do the difference of two squares thing.
+
+Now you have (x + y - z)(x - y - z).

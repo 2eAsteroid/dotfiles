@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: SIunit Quantity
+# key: ;s
+# --
+\\qty{$1}{$0}

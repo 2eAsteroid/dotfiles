@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Exponent
+# key: ;ex
+# --
+$1^{$0}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Limit
+# key: ;lm
+# --
+\\lim_{$1}($0)

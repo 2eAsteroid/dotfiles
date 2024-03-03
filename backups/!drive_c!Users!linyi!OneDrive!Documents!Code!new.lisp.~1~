@@ -1,0 +1,14 @@
+(setq yearly-income
+      )
+
+(setq tax-brackets
+      '(0.10
+	0.12
+	0.22
+	0.24
+	0.32
+	0.35
+	0.37))
+
+(defun taxes-to-pay ()
+  )

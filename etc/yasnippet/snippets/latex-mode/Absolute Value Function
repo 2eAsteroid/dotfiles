@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Absolute Value Function
+# key: ;a
+# --
+\lvert $0 \rvert

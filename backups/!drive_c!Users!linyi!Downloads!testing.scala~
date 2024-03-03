@@ -1,0 +1,34 @@
+class Testing() {
+  def winner() : String = {
+    val columns = (("", "", ""), ("X", "", ""), ("O", "", ""))
+
+    for(i <- 0 until 3) {
+        if((columns(i)(0) == columns(i)(1)) && (columns(i)(1) == columns(i)(2))) {
+          if(columns(i)(0) != "") {
+            return columns(i)(0)
+          }
+        }
+        if((columns(0)(i) == columns(1)(i)) && (columns(1)(i) == columns(2)(i))) {
+          if(columns(0)(i) != "") {
+            return columns(0)(i)
+          }
+        }
+      }
+      if((columns(0)(0) == columns(1)(1)) && (columns(1)(1) == columns(2)(2))) {
+        if(columns(0)(0) != "") {
+          return columns(0)(0)
+        }
+      }
+      if((columns(0)(2) == columns(1)(1)) && (columns(1)(1) == columns(2)(0))) {
+        if(columns(0)(2) != "") {
+          return columns(0)(2)
+        }
+      }
+    return ""
+  }
+}
+
+def main() = {
+val game = new Board()
+println(game.winner())
+}

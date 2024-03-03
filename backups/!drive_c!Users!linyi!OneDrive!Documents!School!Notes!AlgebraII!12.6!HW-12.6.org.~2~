@@ -1,0 +1,12 @@
+#+TITLE: Homework 12/6
+#+SUBTITLE: p. 446 #1-4, 6, 9, 11, 13, 14
+#+AUTHOR: Daniel L.
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{amsthm}
+\newtheorem*{problem}{Problem}
+
+* Problem 1 (p 446)
+** Part A
+\begin{problem}
+  Give an approximation for 36^{\frac{1}{2}}
+\end{problem}

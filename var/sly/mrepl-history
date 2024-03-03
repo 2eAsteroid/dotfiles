@@ -1,0 +1,80 @@
+cd####
+(cd)####
+(load "C:/Program Files/install.lsp")####
+(load "C:\Program Files\install.lsp")####
+(load "C:\\Program Files\\Shen\\install.lsp")####
+(function)####
+(load "install.lsp")####
+hello####
+(quit)####
+exit####
+quit####
+qqqq####
+q####
+1####
+2d####
+(load)####
+(exit)####
+(format t "Hello world")####
+(length '())####
+(length ())####
+(length '(1))####
+(cdr ())####
+(car ())####
+(xand t t)####
+(defun list-match (first-list second-list)
+  (let ((head-one (car first-list))
+        (head-two (car second-list))
+        (tail-one (cdr first-list))
+        (tail-two (cdr second-list)))
+      (and (eql head-one head-two) (or (and (null (length first-list)) (null (length second-list))) (list-match tail-one tail-two)))))####
+(defun list-match (first-list second-list)
+  (let* ((head-one (car first-list))
+        (head-two (car second-list))
+        (tail-one (cdr first-list))
+        (tail-two (cdr second-list))
+        (empty-p (and (null tail-one) (null tail-two))))
+      (and (eql head-one head-two) (or (and (null (length first-list)) (null (length second-list))) (list-match tail-one tail-two)))))####
+(defun list-match (first-list second-list)
+  (let* ((head-one (car first-list))
+        (head-two (car second-list))
+        (tail-one (cdr first-list))
+        (tail-two (cdr second-list))
+        (empty-p (and (null tail-one) (null tail-two))))
+      (and (eql head-one head-two) (or empty-p (list-match tail-one tail-two)))))####
+(list-match '(1 2 3) '(1))####
+(list-match '(1 2 3) '(1 2 3))####
+(list-match '(1 2 3 4) '(1 2 3 5))####
+(defmacro list-pattern-match (input-list &rest body)
+  "Accepts two expressions: the first is a list to be matched, the second is a list of cons cells where the CAR is the list to match with the list to be matched, and the second is the code to run."
+  (dolist (cases body)
+    (if (or (list-match input-list (car cases)) (eql (car cases) t))
+        (cdr cases))))####
+(5 . 1)####
+(5 . (1))####
+(5 . ())####
+'(5 . 1)####
+(defmacro list-pattern-match (input-list &rest body)
+  "Accepts two expressions: the first is a list to be matched, the second is a list of cons cells where the CAR is the list to match with the list to be matched, and the second is the code to run."
+  (dolist (cases body)
+    (if (or (list-match input-list (car cases)) (eql (car cases) t))
+        ,(cdr cases))))####
+(defmacro list-pattern-match (input-list &rest body)
+  "Accepts two expressions: the first is a list to be matched, the second is a list of cons cells where the CAR is the list to match with the list to be matched, and the second is the code to run."
+  (dolist (cases body)
+    (if (or (list-match input-list (car cases)) (eql (car cases) t))
+        ,@(cdr cases))))####
+(defmacro list-pattern-match (input-list &rest body)
+  "Accepts two expressions: the first is a list to be matched, the second is a list of cons cells where the CAR is the list to match with the list to be matched, and the second is the code to run."
+  '(dolist (cases body)
+    (if (or (list-match input-list (car cases)) (eql (car cases) t))
+        ,@(cdr cases))))####
+(defmacro list-pattern-match (input-list &rest body)
+  "Accepts two expressions: the first is a list to be matched, the second is a list of cons cells where the CAR is the list to match with the list to be matched, and the second is the code to run."
+  `(dolist (cases body)
+    (if (or (list-match input-list (car cases)) (eql (car cases) t))
+        ,@(cdr cases))))####
+(list-pattern-match (1 2 3)
+                    (((1 5 3) (format t "False"))
+                     ((1 2 3) (format t "True"))
+                     (t (format t "Doesn't reach"))))####

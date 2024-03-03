@@ -1,0 +1,477 @@
+Que sais-je?
+#+title: The REAL 2e Asteroid CONFIG
+#+author: 2e Asteroid (Dan.)
+
+* Motivations
+Before I start, I want to outline some key goals and rules that I should always keep in the back of my mind when I start configuring.
+*Goals:*
+ - Construct a functional and ergonomic (enough) /text/ editor that can support any text manipulations I need.
+ - Create a clean, aesthetic, easy-on-the-eyes screen that makes me want to stay in Emacs longer, not run out of it.
+ - Conjure Emacs fast and easy -- none of that waiting 20 minutes.
+ - Have software reproducible from anywhere.
+
+*Rules:*
+ - When choosing between function and flow, choose a median between either.
+ - Make text manipulation and entering keyboard-focused, none of that buttons and widgets.
+ - However, using a mouse is fine.
+ - Choose a median between simple and complex, something that starts off easy and can grow along with me.
+ - Fuck bells
+
+Thanks to all of the other Emacs configs that I stole a snippet or two of code from.
+*Some Notable Configs:*
+ - https://emacs.metaphoric.dev/
+ - https://github.com/protesilaos/dotfiles
+ - https://raw.githubusercontent.com/wiki/domtronn/all-the-icons.el/Mode%20Line.md
+ - 
+
+
+* Bootstrap
+** "Sane" Defaults
+What's sanity these days except for a human construct for the comprehensible?
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)        ; When Emacs is running as a GUI (gooey???) application
+    (blink-cursor-mode 0)          ; Stops the cursor from blinking; it's actually kind of annoying now that I think about it
+    (scroll-bar-mode 0)            ; Removes the scroll bar at the right -- you don't /really/ need this
+    (tool-bar-mode 0)              ; Removes the buttons, "fit a square into a circular hole" tool bar (Or is this the textual one?)
+    (tooltip-mode 0))              ; Removes tool tips from appearing in popup windows
+  (setq use-dialog-box nil         ; For dialog regarding stuff, don't use a popup window
+	use-file-dialog nil)       ; Same thing as above, except for files, me thinks
+#+END_SRC
+
+** "More Sane" Defaults
+If sanity is the comprehensible, then let's make it more comprehensible!
+#+BEGIN_SRC emacs-lisp
+  (setq-default                             ; This sets variables, but for buffer-local vars, it sets it as the default.
+   ad-redefinition-action 'accept           ; This makes it so that when you redefine an existing function, it accepts that, and won't warn you about it. Developer knows best..
+   auto-window-vscroll nil                  ; This makes vertical scrolling better for terminals.
+   confirm-kill-emacs 'y-or-n-p             ; Allows you to kill Emacs with just y and n. I don't think you need to be typing words out here.
+   cursor-in-non-selected-windows nil       ; You're not editing in those windows, so you don't have to know where the cursor is.
+   delete-by-moving-to-trash t              ; Takes deleted files to the trash, so you can quickly restore a file if needed.
+   display-time-default-load-average nil    ; Removes the CPU load average after the time.
+   display-time-format "%k:%M:%S (%Z)"      ; Displays the time as "24 Hours With Fill: Minutes : Seconds (Time Zone)"
+   fill-column 80                           ; This controls when stuff like Auto-Fill-Mode will wrap.
+   help-window-select t                     ; This gives the focused window spotlight to help windows when you open them
+   indent-tabs-mode nil                     ; The classic Tabs v. Spaces argument. Shut the fuck up.
+   inhibit-startup-screen t                 ; This removes the classic but sadly out-of-place starting screen.
+   initial-scratch-message ""               ; Instead of some helpful statements, we don't give the scratch buffer a message
+   mouse-yank-at-point t                    ; Making Emacs mouse yanking a bit better, je pense...
+   ns-use-srgb-colorspace nil               ; Using Adobe RGB instead of standardRGB, since it has more colors
+   select-enable-clipboard t                ; Mind-melding the system clipboard with the Emacs clipboard, to make stuff easier.
+   sentence-end-double-space nil            ; Double SPACES ?!?
+   show-help-function nil                   ; 'Tis for the tool bar, which we don't use
+   show-trailing-whitespace t               ; Making trailing whitespace more visible
+   split-height-threshold nil               ; Some window splitting stuff
+   split-width-threshold nil                ; Same thing here
+   tab-width 4                              ; A 4 tab-width is standard
+   uniquify-buffer-name-style 'forward      ; In case of the same file name, this'll show the different directories the files are in, with a "/".
+   window-combination-resize t              ; Resizes the windows proportionally
+   x-stretch-cursor nil                     ; Makes the cursor stretch to fit the glyph it's on, which looks kind of bad, actually
+   delete-old-versions nil                  ; Storage is cheap, while ideas are ephemeral
+   version-control t                        ; Version control is useful always
+   ring-bell-function 'ignore               ; Shut up, PLEASE
+   inhibit-compacting-font-caches t         ; Uses more memory, but speedier
+   recentf-mode t                           ; Shows recent files
+   make-backup-files t                      ; Ideas are ephemeral
+   display-line-numbers-type 'relative      ; Just in case I use display-line-numbers (Never-ish)
+   vc-follow-symlinks t                     ; Symlinks
+   use-default-font-for-symbols nil         ; We don't want the same font for everything, unless we specify it.
+   frame-inhibit-implied-resize nil)        ; Symlink
+  (cd "~/")                                 ; Takes us to the home directory.
+  (delete-selection-mode 1)                 ; Instead of just yanking to the buffer, we remove what we highlighted when we yank to text
+  (display-time)                            ; What does this do? Only time will tell.
+  (global-auto-revert-mode 1)               ; Changes on the disk means changes in Emacs
+  (fringe-mode '(8 . 0))                    ; Leaves some space on the left for git / magit(?)
+  (electric-pair-mode t)                    ; Automatically inserts closing parentheses, etc.
+  (electric-indent-mode t)                  ; Automatically indents for you
+  (fset 'yes-or-no-p 'y-or-n-p)             ; More conciseness! Yummy
+  (global-subword-mode 1)                   ; It can now iterate through camelCase words
+  (menu-bar-mode 0)                         ; It's still kind of useful
+  (mouse-avoidance-mode 'jump)              ; No more collisions
+  (put 'downcase-region 'disabled nil)      ; Enables downcase-region
+  (put 'upcase-region 'disabled nil)        ; Enables upcase-region
+  (show-paren-mode 1)                       ; Really useful -- it highlights the matching parentheses, or makes it turn a warning color
+#+END_SRC
+
+** Fullscreen?! Yippee
+#+BEGIN_SRC emacs-lisp
+  (if (eq window-system 'ns)
+      (toggle-frame-maximized)
+    (toggle-frame-fullscreen))
+#+END_SRC
+
+** Focusing out of a Buffer will Garbage Collect
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'focus-out-hook #'garbage-collect)
+#+END_SRC
+
+** Save Removes Trailing Whitespace
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+** Default to UTF-8 Encoding
+#+BEGIN_SRC emacs-lisp
+  (set-default-coding-systems 'utf-8)
+  (set-language-environment "UTF-8")
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+#+END_SRC
+
+** Stops Littering
+#+BEGIN_SRC emacs-lisp
+  (setq no-littering-etc-directory
+	(expand-file-name "config/" user-emacs-directory))               ; Puts all configuration files in a "config" folder.
+  (setq no-littering-var-directory
+	(expand-file-name "data/" user-emacs-directory))                 ; Puts all data files in a "data" folder.
+  (require 'no-littering)
+
+  (require 'recentf)
+  (add-to-list 'recentf-exclude                                          ; Excludes all no-littering files from recentf
+	       (recentf-expand-file-name no-littering-var-directory))
+  (add-to-list 'recentf-exclude                                          ; ^
+	       (recentf-expand-file-name no-littering-etc-directory))
+
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))     ; Stores Emacs' configuration interface in the config folder, called custom.el
+#+END_SRC
+
+** The Garbage Collector Magic Hack
+Remember to add a top hat and wand emoji after this heading.
+#+BEGIN_SRC emacs-lisp
+  (require 'gcmh)
+  (setq gcmh-low-cons-threshold 800000            ; This is the normal garbage-collection rate, when you're actively working
+	gcmh-high-cons-threshold #x40000000       ; This is the idling garbage-collection rate
+	gcmh-idle-delay 15                        ; How much time needs to pass to count as idle delay. Or, you can set it to auto.
+	gcmh-auto-idle-delay-factor 20            ; A factor that calculates the idle delay time, if you set the idle delay to auto.
+	)
+#+END_SRC
+
+** General Utils
+Some utility functions
+#+BEGIN_SRC emacs-lisp
+  (defun custom/open-config-org-file ()                                      ; A function that opens up your configuration file
+    (interactive)
+    (find-file (expand-file-name "config.org" user-emacs-directory)))
+
+  (defun custom/add-function-to-multiple-hooks (func hooks)                  ; This adds the same function to multiple hooks
+    (mapc (lambda (hook)
+	    (add-hook hook function))
+	  hooks))
+#+END_SRC
+
+** Highlight Line
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'hl-line-mode)  ; Makes the current line be highlighted
+#+END_SRC
+
+
+* Fonts
+** Set Fallback Fonts
+#+BEGIN_SRC emacs-lisp
+  (when (member "Segoe UI Emoji" (font-family-list))                                 ; Default Emoji font for Windows
+    (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)   ; Switch it to Linux when I move to Linux
+    (set-fontset-font "fontset-default" '(#xFE00 . #xFE0F) "Segoe UI Emoji"))
+
+  (when (member "Times New Roman" (font-family-list))                                ; Comes default with Windows
+    (set-fontset-font "fontset-default" 'unicode "Times New Roman"))                 ; Add more when I get more
+
+
+  (when (member "Unifont" (font-family-list))                                        ; A font with a LOT of codepoints
+    (set-fontset-font t nil "Unifont" nil 'append)
+    (set-fontset-font t nil "Unifont Upper" nil 'append)
+    (message "Added Unifont"))
+#+END_SRC
+
+** Ligatures
+#+BEGIN_SRC emacs-lisp
+  (global-fira-code-mode)                                                                                  ; Enables Fira Code Mode Globally
+  (fira-code-mode-set-font)                                                                                ; Makes sure it's using Fira Code Symbol
+
+  (custom-set-variable 'fira-code-mode-disabled-ligatures '("*" "?=" "[]"))                                ; Disables '*', '=', and '[]' from being ligature'ed
+
+  (defun electric-pair-disable-certain-brackets ()                                                         ; Disables some "unwieldy" brackets so ligatures don't get messed up
+    (setq-local electric-pair-inhibit-predicate                                                            ; Sets a predicate for inhibiting the adding of a bracket
+		'(lambda (c)
+		   (or (char-equal c ?<) (char-equal c ?=))))                                              ; If the character is equal to < or =, inhibit it
+
+  (add-function-to-multiple-hooks 'electric-pair-disable-certain-brackets '(                               ; Adds function to multiple hooks
+									    prog-mode-hook                 ;    Adds to all programming modes
+									    org-mode-hook                  ;    Adds to Org Mode
+									    text-mode-hook                 ;    Adds to Text Mode
+									    ))
+#+END_SRC
+
+
+* Themes
+I might add more themes in the future, but who knows.
+** Crypt Theme
+A theme I made myself!
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'crypt t)  ; Loads my theme
+#+END_SRC
+
+
+
+* Appearances
+** All The Icons
+#+BEGIN_SRC emacs-lisp
+  (when display-graphic-p       ; When using Emacs as a Gooey
+    (require 'all-the-icons)    ;   Use All The Icons
+#+END_SRC
+** Solaire
+Package makes real buffers (text, code, files, etc) a different color than fake buffers (search completion, messages, modeline)
+#+BEGIN_SRC emacs-lisp
+  (solaire-global-mode 1)                                     ; Turns on Solaire Mode Globally
+  (defun solaire-mode-real-buffer-fn ()                       ; Function that detects what Real buffers are
+    (solaire-mode-real-buffer-p))                             ;    - default function
+
+  (dolist (face '(mode-line mode-line-inactive))              ; For mode lines, remove them from being remapped
+    (setf (alist-get face solaire-mode-remap-modeline) nil))  ; ^
+#+END_SRC
+** Rainbow Mode
+Sometimes, over-zealous, but the peppier the better, am I right?
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'rainbow-mode)     ; Enables rainbow mode (colors the background of colors, e.g. #FFFFFF) for programming modes
+#+END_SRC
+** Highlight Delimiters
+Prettier except not.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)  ; Enables Rainbow Delimiters for Programming Languages
+#+END_SRC
+
+
+* Modeline
+** Truncate String Utils
+#+BEGIN_SRC emacs-lisp
+  (defvar-local sensible-split-width-threshold 160)                    ; Kinda set the actual value to nil, so we can just make a new variable for just the mode line
+  (defvar-local mode-line-truncate-length 9)                           ; How long should a string at least be until being truncated
+
+  (defun custom/mode-line-truncate-string-p (str)                      ; Checks if a string should be truncated
+    "Returns non-nil if the string should be truncated"
+    (and (< (window-total-width) sensible-split-width-threshold)       ; Sometimes rainbow delimiters make me angry. Anyways, this returns the conjunction of whether the window's length is smaller than the split-threshold
+	 (> (length str) mode-line-truncate-length)                    ; and whether the string is longer than the truncate length
+	 (not (one-window-p :no-minibuffer))))                         ; and whether there's more than one window (not counting the minibuffer)
+
+  (defun custom/mode-line-truncate-string (str)                        ; Truncates the string function
+    "Returns the truncated string, else return the original string."
+    (if (mode-line-truncate-string-p str)                              ; If the string should be truncated
+	(concat (substring str 0 mode-line-truncate-length) "...")     ; Add the first 9 characters of the string and append a '...' at the end.
+      str))                                                            ; Else, return original string
+#+END_SRC
+
+** Modeline Blank Spaces Helper Functions
+#+BEGIN_SRC emacs-lisp
+  (defun custom/static-blank ()
+    " ")
+
+  (defun custom/mode-line-right-align-rest ()
+    (format-mode-line
+     '(""
+       ,@(cdr (memq 'custom/mode-line-align-right mode-line-format)))))
+
+  (defun custom/mode-line-right-align-width ()
+    "Returns the pixel width of 'custom/mode-line-right-align-rest'"
+    (string-pixel-width (custom/mode-line-right-align-rest)))
+
+  (defun custom/mode-line-box-p ()
+    "Returns non-nil if the 'mode-line' has a box-attribute."
+    (and (face-attribute 'mode-line :box)
+	 (null (eq (face-attribute 'mode-line :box) 'unspecified))))
+
+  (defun custom/mode-line-variable-pitch-p ()
+    "Returns non-nil if the 'mode-line' inherits 'variable-pitch'."
+    (when-let* ((mode-line-inherit (face-attribute 'mode-line :inherit))
+		((string-match-p "variable-pitch" (symbol-name mode-line-inherit)))
+		(family-face (face-attribute mode-line-inherit :inherit))
+		(variable-pitch
+		 (if (listp family-face)
+		     (memq 'variable-pitch family-face)
+		   (eq 'variable-pitch family-face))))
+      variable-pitch))
+
+  (defun custom/mode-line-align-right-magic-number ()
+    "Returns a constant for use in aligning right some stuff."
+    (let ((height (face-attribute 'mode-line :height nil 'default))
+	  (m-width (string-pixel-width (propertize "m" 'face 'mode-line))))
+      (round height (* m-width (* height m-width 0.001)))))
+
+  (defun custom/mode-line-align-right ()
+    "Aligns everything on the right of this to the right."
+      '(propertize
+       " "
+       'display
+       (let ((box-p (custom/mode-line-box-p))
+	     (variable-pitch-p (custom/mode-line-variable-pitch-p))
+	     (magic-number (custom/mode-line-align-right-magic-number)))
+	 `(space
+	   :align-to
+	   (- right
+	      right-fringe
+	      right-margin
+	      ,(ceiling
+		(custom/mode-line-right-align-width)
+		(string-pixel-width (propertize "m" 'face 'mode-line)))
+	      ,(cond
+		((and variable-pitch-p box-p)
+		 (* magic-number 0.5))
+		((and (not variable-pitch-p) box-p)
+		 (* magic-number 0.25))
+		((and variable-pitch-p (not box-p))
+		 (* magic-number 0))
+		(t (* magic-number -0.1))))))))
+#+END_SRC
+
+** Modeline Save/d Icon
+#+BEGIN_SRC emacs-lisp
+  (defun custom/mode-line-modified ()
+    (let* (
+	   (config-alist
+	    '(("*" all-the-icons-faicon-family all-the-icons-faicon "chain-broken" :height 1.2 :v-adjust -0.0)
+	      ("-" all-the-icons-faicon-family all-the-icons-faicon "link" :height 1.2 :v-adjust -0.0)
+	      ("%" all-the-icons-octicon-family all-the-icons-octicon "lock" :height 1.2 :v-adjust 0.1)))
+	   (result (cdr (assoc (format-mode-line "%*") config-alist))))
+      (propertize (apply (cadr result) (cddr result))
+		  'face `(:family ,(funcall 'car result)))))
+#+END_SRC
+
+** Modeline Buffer/Region Information
+#+BEGIN_SRC emacs-lisp
+  (defun custom/mode-line-buffer-info ()
+    )
+#+END_SRC
+
+** Modeline Buffer Name, Mode, and VC Branch
+#+BEGIN_SRC emacs-lisp
+  (defun custom/mode-line-buffer-name ()
+    (buffer-name))
+
+  (defun custom/mode-line-mode-icon ()
+  (format " %s"
+    (propertize (all-the-icons-icon-for-mode major-mode)
+		'help-echo (format "Major-mode: `%s`" major-mode)
+		'face `(:height 1.2 :family ,(all-the-icons-icon-family-for-buffer)))))
+
+  (defun )
+#+END_SRC
+
+** Modeline Version Control
+#+BEGIN_SRC emacs-lisp
+  (defun vc-branch ()
+    (let ((backend (vc-backend buffer-file-name)))
+      (substring vc-mode (+ (if (eq backend 'Hg) 2 3) 2))))
+  (vc-branch)
+#+END_SRC
+** Modeline DateTime
+#+BEGIN_SRC emacs-lisp
+  (setq display-time-interval 1)                         ; Updates the time every second
+  (setq-default display-time-default-load-average nil)   ; Stops the time from displaying the load average
+  (display-time)                                         ; Starts displaying the time
+#+END_SRC
+
+** Modeline Format
+#+BEGIN_SRC emacs-lisp
+  (dolist (construct '(mode-line-buffer-read-only
+		       mode-line-major-mode-name
+		       mode-line-modified-p))
+    (put construct 'risky-local-variable t))
+
+  (setq-default mode-line-format
+		'("%e"
+		  mode-line-buffer-read-only
+		  "   "
+		  (:eval (mode-line-truncate-string (if (vc-registered (buffer-file-name))
+							(format "%s (%s #%s)" buffer-file-name mode-line-major-mode-name (vc-responsible-backend (buffer-file-name)))
+						      (format "%s %s" buffer-name mode-line-major-mode-name))))
+		  '(:eval (propertize
+			   " " 'display
+			   `((space :align-to (- (+ right right-fringe right-margin)
+						 ,(+ 3 (string-width display-time-string)))))))
+		  display-time-string
+		 ))
+#+END_SRC
+
+
+* Dashboard
+** Dashboard ported from Doom
+#+BEGIN_SRC emacs-lisp
+  (defface crypt-dashboard-title)
+  (require 'dashboard)
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title (propertize "⦓THE LIBRARY OF BABEL⦔" 'face crypt-dashboard-title))
+  (setq dashboard-startup-banner "~/.emacs.d/poltergeist.png")
+  (add-hook 'dashboard-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+  (setq dashboard-center-content t
+	dashboard-set-heading-icons t
+	dashboard-set-file-icons t
+	dashboard-set-navigator t)
+  
+
+#+END_SRC
+
+
+* Keyboard Layout
+** Movement Functions
+#+BEGIN_SRC emacs-lisp
+  (defun poltergeist-right-char ()
+    (interactive)
+    (right-char))
+
+  (defun poltergeist-left-char ()
+    (interactive)
+    (right-char))
+
+  (defun poltergeist-previous-line ()
+    (interactive)
+    (previous-line))
+
+  (defun poltergeist-forward-line ()
+    (interactive)
+    (forward-line))
+
+  (defun poltergeist-split-window-up-down ()
+    (interactive)
+    (split-window-horizontally))
+
+  (defun poltergeist-split-window-left-right ()
+    (interactive)
+    (split-window-vertically))
+
+  (defun poltergeist-right-word ()
+    (interactive)
+    (forward-word))
+
+  (defun poltergeist-left-word ()
+    (interactive)
+    (backward-word))
+    #+END_SRC
+
+** Deleting Functions
+#+BEGIN_SRC emacs-lisp
+  (defun poltergeist-kill-line ()
+    (interactive)
+    (move-beginning-of-line nil)
+    (kill-line)
+    (kill-line)
+    (previous-line)
+    (end-of-line nil))
+
+  (defun poltergeist-kill-region ()
+    (interactive)
+    (if (region-active-p)
+	(kill-region 0 42 t)
+      (message "No region was selected.")))
+
+  (defun poltergeist-kill-buffer ()
+    (interactive)
+    (push-mark)
+    (end-of-buffer)
+    (set-mark-command nil)
+    (beginning-of-buffer)
+    (poltergeist-kill-region)
+    (set-mark-command t)
+    (set-mark-command t))
+
+
+#+END_SRC

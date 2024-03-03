@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Wrap
+# key: Wrap
+# --
+($0)

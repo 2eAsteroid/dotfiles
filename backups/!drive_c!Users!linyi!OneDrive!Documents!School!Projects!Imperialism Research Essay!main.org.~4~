@@ -1,0 +1,6 @@
+#+TITLE: Lorem Ipsum
+#+SUBTITLE: Modern Times
+#+AUTHOR: Daniel Lin
+#+OPTIONS: toc:nil
+#+bibliography: ref.bib
+#+cite_export: csl

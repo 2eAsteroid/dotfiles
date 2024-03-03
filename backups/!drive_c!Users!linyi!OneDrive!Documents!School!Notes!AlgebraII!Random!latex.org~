@@ -1,0 +1,10 @@
+#+TITLE: Latex Stuff
+#+AUTHOR: Daniel Lin
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{amsmath}
+
+* Multiline Equation
+\begin{gather*}
+y = \frac{x}{10} \nonumber\\
+z = \sqrt[y]{x - 12} \nonumber\\
+\end{gather*}

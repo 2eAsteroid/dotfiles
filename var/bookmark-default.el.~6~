@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "c:/Users/linyi/OneDrive/Documents/Wiki/20240228085527-excretory_system.org")
+ (front-context-string . "\nAn organ system")
+ (rear-context-string . "xcretory System\n")
+ (position . 94)
+ (last-modified 26079 17347 240762 0))
+)

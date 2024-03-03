@@ -1,0 +1,311 @@
+#+TITLE: The REAL 2e Asteroid Emacs CONFIG
+#+AUTHOR: 2e Asteroid (Dan) (I refuse to get doxxed)
+
+* The REAL 2e Asteroid Emacs CONFIG
+Literate programming is apparently good for an Emacs config, so here I am.
+
+** Aesthetic-Wise
+The stuff that makes Emacs look cool 
+*** Cool Bazonkers Theme
+I want a off-white / retro theme, so I'll use the Gruvbox theme (Cool Theme)
+#+BEGIN_SRC emacs-lisp
+  (use-package gruvbox-theme
+    :init
+      (load-theme 'gruvbox-dark-hard t))
+  (defvar using-theme "dark")
+#+END_SRC
+
+*** Night-time Theme
+Something bright would be bad for working at night, so the Gruvbox dark theme can also be used.
+#+BEGIN_SRC emacs-lisp
+  (defun switch-theme ()
+      (interactive)
+      (cond ((equal using-theme "light")
+             (load-theme 'gruvbox-dark-hard t) ; Switches to the dark theme if the current theme is light
+             (setq using-theme "dark")) ; So we know the theme is switched
+            ((equal using-theme "dark")
+             (load-theme 'gruvbox-light-hard t) ; Switches to the light theme
+             (setq using-theme "light"))))
+  (global-set-key (kbd "C-c C-g") `switch-theme)
+#+END_SRC
+
+*** Disable Startup Menu
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
+*** Bars at the Top and Startup
+It looks horribly out of place in today's society, so it's gone.
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+*** Change yes/no questions to y/n questions
+#+BEGIN_SRC emacs-lisp
+    (defalias `yes-or-no-p `y-or-n-p)
+#+END_SRC
+*** Fonts
+One of the best fonts in my opinion is ET Book (for prose).
+For coding, a good font is Fira Code (with a cool !=)
+
+#+BEGIN_SRC emacs-lisp
+  (set-frame-font "Fira Code Regular-13" nil t)
+  (set-fontset-font t nil "Times New Roman" nil 'append)
+#+END_SRC
+
+*** Startup Screen
+Doom Emacs had a really cool background screen, which I intend to borrow.
+
+*** UTF-8 Encoding
+The only useful part in this 2nd Level heading
+#+BEGIN_SRC emacs-lisp
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+#+END_SRC
+
+*** Ring-Bell Function, Please Shut up
+This sound is honestly really annoying.
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+END_SRC
+
+*** Highlight Current Line
+This highlights the line your cursor is on. Pretty cool.
+
+#+BEGIN_SRC emacs-lisp
+  (when window-system (add-hook 'prog-mode-hook 'hl-line-mode))
+#+END_SRC
+
+*** Line Numbers ?!?
+Line numbers show what line you're on. A needed tool.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package linum-relative
+  :ensure t
+  :config
+    (setq linum-relative-current-symbol "")
+    (add-hook 'prog-mode-hook 'linum-relative-mode))
+#+END_SRC
+
+*** Telephone-Line
+Makes the mode-line look even better.
+#+BEGIN_SRC emacs-lisp
+  ()
+  (telephone-line-mode 1) 
+#+END_SRC
+
+*** Line Spacing
+Line spacing should be 0 for code, and 1 for text
+#+BEGIN_SRC emacs-lisp
+  (setq-default line-spacing 0)
+#+END_SRC
+
+*** How Underlines are Drawn
+#+BEGIN_SRC emacs-lisp
+  (setq x-underline-at-descent-line t)
+#+END_SRC
+
+*** Stop Cursor Blinking
+#+BEGIN_SRC emacs-lisp
+  (blink-cursor-mode 0)
+#+END_SRC
+
+*** See Matching Parentheses
+#+BEGIN_SRC emacs-lisp
+  (setq show-paren-delay 0)
+  (show-paren-mode 1)
+#+END_SRC
+
+*** File Limits
+Sometimes, files are just too large.
+#+BEGIN_SRC emacs-lisp
+  (setq gc-cons-thresold 50000000)
+  (setq large-file-warning-thresold 100000000)
+#+END_SRC
+
+*** Personal Information
+#+BEGIN_SRC emacs-lisp
+  (setq user-full-name "Daniel L.")
+  (setq user-mail-address "two-e-asteroid@outlook.com")
+#+END_SRC
+** ACTUAL Text Editing
+Want to be able to edit text without being blocked by Emacs?
+You came to the wrong place.
+
+*** Using Vim (Instead of Going to the Gym)
+Yeah, vim /is/ the mortal enemy of Emacs, but it has better, faster shortcuts for editing text.
+Time to turn to the evil side.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'evil)
+  (evil-mode 1)
+#+END_SRC
+
+** Org-mode
+Org mode is love, org mode is life.
+*** Evil Org
+Default Evil-mode with Org sucks, so there's a special package that fixes this !
+#+BEGIN_SRC emacs-lisp
+  ;;; Some ease of use stuff
+
+  ;; Gets Vim keybindings to work well within Org-mode
+  (use-package evil-org
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+	(lambda () (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+#+END_SRC
+
+*** My Special TODOs
+The default TODOs don't match my workflow, so they're changed.
+#+BEGIN_SRC emacs-lisp
+ (setq org-todo-keywords
+    (quote ((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)")))) 
+#+END_SRC
+
+*** Headlines
+Headlines should only display one asterisk, and be differentiated by indentation.
+#+BEGIN_SRC emacs-lisp
+  (setq org-hide-leading-stars t) 
+  (add-hook 'org-mode 'org-indent-mode) ; Displaying only one asterisk
+    (require `org-bullets)
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-bullets-bullet-list `("⁖"))
+#+END_SRC
+
+*** Line Wrapping
+For lines that were just too long.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook
+	    '(lambda ()
+	       (visual-line-mode 1)))
+#+END_SRC
+
+*** All Children of a TODO must be also done
+To prevent me from missing something I didn't do, all sub-tasks have to be DONE in order for the main task to be DONE
+#+BEGIN_SRC emacs-lisp
+  (setq-default org-enforce-todo-dependencies t)
+#+END_SRC
+
+*** Replace Ellipses with Another Symbol
+The ellipses look alright, but it would be better to have a more concise symbol.
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis "⤵")
+#+END_SRC
+
+*** Padding
+Makes Org-mode look even better.
+#+BEGIN_SRC emacs-lisp
+  (defun set-line-spacing-header-line-spacing ()
+    (setq line-spacing 0.1)
+    (setq header-line-format " "))
+  (add-hook 'org-mode-hook 'set-line-spacing-header-line-spacing)
+  (defun set-horizontal-padding () (progn
+    (setq left-margin-width 2)
+    (setq right-margin-width 2)
+    (set-window-buffer nil (current-buffer))))
+  (add-hook 'org-mode-hook 'set-horizontal-padding)
+#+END_SRC
+
+*** Org-Indent Mode
+Makes text align with the headlines.
+#+BEGIN_SRC emacs-lisp
+  (setq org-startup-indented t)
+#+END_SRC
+
+*** Hide Emphasis Markers and Use Pretty Entities
+#+BEGIN_SRC emacs-lisp
+  (setq org-pretty-entities t)
+  (setq org-hide-emphasis-markers t)
+#+END_SRC
+
+*** Start Org-mode Folded
+It looks way too cluttered, so it should start with the lowest amount of entropy possible.
+#+BEGIN_SRC emacs-lisp
+  (setq org-startup-folded t)
+#+END_SRC
+
+*** Org Codeblock Syntax Highlighting
+#+BEGIN_SRC emacs-lisp
+    (setq org-src-fontify-natively t)
+#+END_SRC
+
+*** Changes list bullets
+#+BEGIN_SRC emacs-lisp
+  (setq org-list-demote-modify-bullet
+      (quote (("+" . "-")
+              ("-" . "+")
+              ("*" . "-")
+              ("1." . "-")
+              ("1)" . "-")
+              ("A)" . "-")
+              ("B)" . "-")
+              ("a)" . "-")
+              ("b)" . "-")
+              ("A." . "-")
+              ("B." . "-")
+              ("a." . "-")
+              ("b." . "-"))))
+#+END_SRC
+
+*** Org-mode Fonts
+#+BEGIN_SRC emacs-lisp
+  (let* ((variable-tuple
+            (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+                  ((x-list-fonts "Times New Roman") '(:font "Times New Roman"))
+                  ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+                  (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+           (base-font-color     (face-foreground 'default nil 'default))
+           (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+      (custom-theme-set-faces
+       'user
+       `(org-level-8 ((t (,@headline ,@variable-tuple))))
+       `(org-level-7 ((t (,@headline ,@variable-tuple))))
+       `(org-level-6 ((t (,@headline ,@variable-tuple))))
+       `(org-level-5 ((t (,@headline ,@variable-tuple))))
+       `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+       `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+       `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+       `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+       `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+
+    (custom-theme-set-faces
+          'user
+          '(variable-pitch ((t (:family "ETBembo" :height 140 :weight thin))))
+          '(fixed-pitch ((t ( :family "Fira Code Regular" :height 120)))))
+      (add-hook 'org-mode-hook 'variable-pitch-mode)
+
+    (custom-theme-set-faces
+   'user
+   '(org-block ((t (:inherit fixed-pitch))))
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-document-info ((t (:foreground "dark orange"))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+   '(org-link ((t (:foreground "royal blue" :underline t))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+   '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
+#+END_SRC
+
+*** Visual Line Mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook 'visual-line-mode)
+#+END_SRC
+
+** Maneuverability
+Maneuverability is key.
+*** Spaceleader
+Not using the SPC key is honestly one of Emacs and Vim's faults. It's the most ergonomic by far.
+

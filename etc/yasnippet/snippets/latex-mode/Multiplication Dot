@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Multiplication Dot
+# key: *
+# --
+\\cdot $0
